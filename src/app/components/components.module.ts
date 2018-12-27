@@ -24,18 +24,22 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import {DeviceSelectComponent} from './login/device-select/device-select.component';
+import {PinPageComponent} from './login/pin-page/pin-page.component';
 
 @NgModule({
   declarations: [
     AlbumsComponent,
     BackupMediaComponent,
     DeviceNewComponent,
+    DeviceSelectComponent,
     DeviceSetupComponent,
     ExportMediaComponent,
     ImportMediaComponent,
     LoginComponent,
     MediaManagerComponent,
-    PlayingNowComponent
+    PlayingNowComponent,
+    PinPageComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,8 @@ import {ExportMediaComponent} from './components/export-media/export-media.compo
 import {ImportMediaComponent} from './components/import-media/import-media.component';
 import {MediaManagerComponent} from './components/media-manager/media-manager.component';
 import {DeviceNewComponent} from './components/device-new/device-new.component';
+import {DeviceSelectComponent} from './components/login/device-select/device-select.component';
+import {PinPageComponent} from './components/login/pin-page/pin-page.component';
 
 const routes: Routes = [
     {
@@ -26,10 +28,12 @@ const routes: Routes = [
           {path: 'backup', component: BackupMediaComponent},
           {path: 'new', component: DeviceNewComponent},
           {path: 'device', component: DeviceSetupComponent},
+          {path: 'deviceselect', component: DeviceSelectComponent},
           {path: 'export', component: ExportMediaComponent},
           {path: 'import', component: ImportMediaComponent},
           {path: 'media', component: MediaManagerComponent},
           {path: 'playing', component: PlayingNowComponent},
+          {path: 'pin', component: PinPageComponent},
         ]
     }
 ];
