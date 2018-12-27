@@ -7,24 +7,12 @@
       <p>--------------------------</p>
     </div>
     <div class="menu-list icon-background-active">
-      <a class="menu-item" href="#"><i style="background: #6AC431 !important;" class="fa gradient-green-light fa-home"
-      ></i>Home</a>
-      <!--<a class="menu-item" ng-click="goPlayingNow()" href="#"><i style="background: #31A68A !important;"  class="fa gradient-sky-light fa-play-circle"></i>Playing-->
-      <!--Now </a>-->
-      <a class="menu-item" href="#"> <i style="background: #6E028D !important;"  class="fa gradient-sky-light fa-folder"></i>Media
-        Manager </a>
-      <a class="menu-item" href="#"> <i
-        style="background: #E9B800 !important;" class="fa gradient-mint-dark fa-upload"></i>Import Media </a>
-      <a href="#" data-submenu="submenu-1" onclick="calls();" class="menu-item"><i
-        style="background: #90ABBC !important;" class="fa gradient-magenta-light fa-download"></i>Export Media </a>
-      <a href="#" data-submenu="submenu-1" class="menu-item"><i
-        style="background: #F58000 !important;" class="fa gradient-magenta-light fa-images"></i>Albums </a>
-      <a href="#" data-submenu="submenu-1" class="menu-item" href="backupmedia.html"><i
-        style="background: #FC9CB7 !important;"class="fa gradient-magenta-light fa-database"></i>Back-up Media </a>
-      <a href="#" class="menu-item"> <i style="background: #0273C3 !important;" class="fa gradient-magenta-light fa-cog"></i>Device
-        Setup </a>
-      <a href="#" data-submenu="submenu-1" class="menu-item"><i
-        style="background: #ED3A3E !important;" class="fa gradient-magenta-light fa-sign-out-alt"></i>Exit </a>
+      <div *ngFor="let item of navigationItems">
+      <a  class="menu-item" [href]="item.path">
+        <i [style.background]="item.icon_background_color" class="fa {{item.icon}}"></i>
+        {{item.name}}
+      </a>
+    </div>
     </div>
     <em class="menu-copyright">Copyright <span class="copyright-year"></span>, Enabled. All Rights Reserved</em>
   </div>

@@ -3,6 +3,7 @@ import {MainComponent} from './main/main.component';
 import {RouterModule} from '@angular/router';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import {SidebarComponent} from './sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
-    RouterModule
+    RouterModule,
+    BrowserModule,
   ]
 })
 
