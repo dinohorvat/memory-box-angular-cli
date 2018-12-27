@@ -9,11 +9,13 @@ import {ExportMediaComponent} from './export-media/export-media.component';
 import {ImportMediaComponent} from './import-media/import-media.component';
 import {MediaManagerComponent} from './media-manager/media-manager.component';
 import {PlayingNowComponent} from './playing-now/playing-now.component';
+import {DeviceNewComponent} from './device-new/device-new.component';
 
 @NgModule({
   declarations: [
     AlbumsComponent,
     BackupMediaComponent,
+    DeviceNewComponent,
     DeviceSetupComponent,
     ExportMediaComponent,
     ImportMediaComponent,

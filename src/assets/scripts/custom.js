@@ -43,7 +43,7 @@ $(document).ready(function(){
 		//Menu Settings
 		setTimeout(function(){$('.menu').show(0);},300);
         if(!$('.menu-hider').length){
-            $('body').append('<div class="menu-hider"></div>');
+            $('body').append('<div id="menu-hider" class="menu-hider"></div>');
         };  
         if(!$('.page-bg').length){
             $('body').prepend('<div class="page-bg gradient-body-1"></div>');

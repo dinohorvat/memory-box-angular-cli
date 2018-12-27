@@ -9,6 +9,7 @@ import {AlbumsComponent} from './components/albums/albums.component';
 import {ExportMediaComponent} from './components/export-media/export-media.component';
 import {ImportMediaComponent} from './components/import-media/import-media.component';
 import {MediaManagerComponent} from './components/media-manager/media-manager.component';
+import {DeviceNewComponent} from './components/device-new/device-new.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,7 @@ const routes: Routes = [
           {path: 'login', component: LoginComponent},
           {path: 'albums', component: AlbumsComponent},
           {path: 'backup', component: BackupMediaComponent},
+          {path: 'new', component: DeviceNewComponent},
           {path: 'device', component: DeviceSetupComponent},
           {path: 'export', component: ExportMediaComponent},
           {path: 'import', component: ImportMediaComponent},

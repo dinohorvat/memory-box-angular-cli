@@ -1,0 +1,48 @@
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large  bg-white-transparent">
+    <div class="pricing-3 ">
+      <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">WIFI Settings</h1>
+      <h2 class="pricing-subtitle text-shadow" align="Center">Please Enter Serial Number, SSID and Password <br>
+        {{statusWifiSetting}}</h2>
+      <h3 class="pricing-value text-shadow">
+
+      </h3>
+      <div class="pricing-3 ">
+        <ul align="center" class="pricing-list">
+          <li align="center">
+            <i align="center">
+              <div class="input-simple-2 textarea has-icon">
+                <input type="text" class="textarea-simple-2" ng-model="mySerial" placeholder="Serial Number">
+              </div>
+            </i>
+          </li>
+          <li align="center">
+            <i align="center">
+              <div class="input-simple-2 textarea has-icon">
+
+                <input type="text" class="textarea-simple-2" ng-model="mySSID" placeholder="SSID">
+              </div>
+            </i>
+          </li>
+
+          <li align="center">
+            <i align="center">
+              <div class="input-simple-2 textarea has-icon">
+                <input type="text" class="textarea-simple-2" ng-model="myWifiPass" placeholder="Password">
+              </div>
+            </i>
+          </li>
+          <i class="fa "></i>
+          <p>{{add_wifi_result}}</p>
+          <li>
+            <i align="center">
+              <button class="button-full button   button-purple" ng-click="apply_wifi_settings()">Apply
+                Settings
+              </button>
+            </i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

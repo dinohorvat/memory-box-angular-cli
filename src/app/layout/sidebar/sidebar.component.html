@@ -8,7 +8,7 @@
     </div>
     <div class="menu-list icon-background-active">
       <div *ngFor="let item of navigationItems">
-      <a  class="menu-item" [href]="item.path">
+      <a (click)="onRouteChange()" [routerLink]="[item.path]"  class="menu-item" [href]="item.path">
         <i [style.background]="item.icon_background_color" class="fa {{item.icon}}"></i>
         {{item.name}}
       </a>

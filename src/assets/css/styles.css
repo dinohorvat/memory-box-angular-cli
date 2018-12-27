@@ -52,3 +52,20 @@
 ul {
   list-style-type: none;
 }
+
+.footer-custom {
+  position: fixed;
+  left: 0;
+  height: 75px;
+  bottom: 0;
+  width: 100%;
+  vertical-align: middle;
+  background-color: white;
+  z-index: 7;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  width: 30px; /*Desired width*/
+  height: 30px; /*Desired height*/
+}
