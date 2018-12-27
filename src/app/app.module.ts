@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {LayoutModule} from './layout/layout.module';
 import {AppRoutingModule} from './app-routing.module';
 import {ComponentsModule} from './components/components.module';
+import {FileService} from './services/file.service';
+import {FileExplorerModule} from './components/file-explorer/file-explorer.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,9 @@ import {ComponentsModule} from './components/components.module';
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    ComponentsModule,
+    ComponentsModule
   ],
-  providers: [],
+  providers: [FileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

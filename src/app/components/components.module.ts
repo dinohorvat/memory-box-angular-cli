@@ -10,6 +10,20 @@ import {ImportMediaComponent} from './import-media/import-media.component';
 import {MediaManagerComponent} from './media-manager/media-manager.component';
 import {PlayingNowComponent} from './playing-now/playing-now.component';
 import {DeviceNewComponent} from './device-new/device-new.component';
+import {FileExplorerModule} from './file-explorer/file-explorer.module';
+import {CommonModule} from '@angular/common';
+import {
+  MatButtonModule, MatCardModule,
+  MatDialogModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatToolbarModule
+} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +39,20 @@ import {DeviceNewComponent} from './device-new/device-new.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule
+    FileExplorerModule,
+    RouterModule,
+    CommonModule,
+    MatToolbarModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatGridListModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule
   ]
 })
 
