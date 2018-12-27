@@ -1,14 +1,12 @@
-<div>
-  <div class="loader">
-    <svg class="circular" viewBox="25 25 50 50">
-      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-    </svg>
-  </div>
+<div id="preloader" class="preloader-light">
+  <h1 class="center-text color-black ultrabold uppercase bottom-0 fa-2x">SmartPlay</h1>
+  <div id="preload-spinner"></div>
+  <p>Smart Play Memory Box</p>
+  <em>This will only take a second. It's totally worth it!</em>
 </div>
-<div class="wrapper">
-  <div class="main-panel">
-    <!--<app-navbar></app-navbar>-->
-    <router-outlet></router-outlet>
-    <!--<app-footer></app-footer>-->
-  </div>
+
+<div id="page-transitions" class="page-build">
+  <div class="page-bg gradient-body-1"></div>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
 </div>
