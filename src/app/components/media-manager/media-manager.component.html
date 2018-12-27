@@ -1,5 +1,5 @@
-
-<div style="padding: 100px; height: 100%; box-sizing: border-box;">
+<div class="page-content header-clear-larger">
+<div style="height: 100%; box-sizing: border-box;">
   <mat-card style="height: 100%; box-sizing: border-box; padding:0">
     <app-file-explorer  [fileElements]="fileElements | async"
                     [path]="currentPath"
@@ -12,4 +12,5 @@
                     (elementMoved)="moveElement($event)">
     </app-file-explorer>
   </mat-card>
+</div>
 </div>
