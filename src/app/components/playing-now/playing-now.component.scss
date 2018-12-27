@@ -1,0 +1,31 @@
+.bottom-image, .one-third {
+  text-align: center;
+}
+
+i {
+  cursor: pointer;
+}
+
+.media-header {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.input-duration {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+}
+
+.media-footer .one-third {
+  margin-bottom: 25px;
+  .play {
+    color: rgb(110, 2, 141);
+  }
+  .pause {
+    color: rgb(2, 115, 195);
+  }
+  .stop {
+    color: rgb(237, 58, 62);
+  }
+}

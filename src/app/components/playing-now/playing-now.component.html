@@ -2,49 +2,47 @@
 <div ng-show="block_playingnow" class="content-box shadow-large  bg-white-transparent">
   <div class="top-25 bottom-25  bg-white-transparent">
     <div class="decoration  bg-white-transparent"></div>
-    <div class="one-third  bg-white-transparent">
-      <h4 class="ultrabold bottom-15"></h4>
-      <img ng-click="prevVideo()" data-src="images/previous.png" src="images/empty.png"
-           class="preload-image responsive-image round-element shadow-large" alt="img">
-    </div>
-    <div class="one-third  bg-white-transparent">
-      <h4 class="ultrabold bottom-15"></h4>
-      <p class="bottom-0">Filename: </p>
-      <p class="bottom-0">Duration in Seconds</p>
-      <p class="bottom-0">
+    <div class="media-header">
+      <div>
+        <h4 class="ultrabold bottom-15"></h4>
+        <i class="fa fa-angle-double-left fa-8x"></i>
 
-      <div class="input-simple-2   input-green bottom-15"><i></i><input style="width:200px; align:center;"
-                                                                        ng-model="durationplay" type="text"
-                                                                        placeholder="3"></div>
+      </div>
+      <div class="bg-white-transparent">
+        <h4 class="ultrabold bottom-15"></h4>
+        <p class="bottom-0">Filename: </p>
+        <p class="bottom-0">Duration in Seconds</p>
+        <p class="bottom-0">
 
+        <div class="input-simple-2   input-green bottom-15"><i></i>
+          <input class="input-duration" ng-model="durationplay" type="number" placeholder="3"></div>
+      </div>
+      <div>
+        <h4 class="ultrabold bottom-15"></h4>
+        <i class="fa fa-angle-double-right fa-8x"></i>
+      </div>
+    </div>
 
-    </div>
-    <div class="one-third last-column  bg-white-transparent">
-      <h4 class="ultrabold bottom-15"></h4>
-      <img data-src="images/next.png" ng-click="nextVideo()" src="images/empty.png"
-           class="preload-image responsive-image round-element shadow-large" alt="img">
-    </div>
     <div class="clear"></div>
     <div align="center" ng-init="whatIsPlayingImage = 'images/pictures/9w.jpg'">
-
       <img width="100%" height="320px">
     </div>
     <div class="clear"></div>
     <div class="decoration"></div>
-    <div class="one-third">
-      <h4 class="ultrabold bottom-15"></h4>
-      <img data-src="images/play.png" src="images/empty.png"
-           class="preload-image responsive-image round-element shadow-large" alt="img">
-    </div>
-    <div class="one-third">
-      <h4 class="ultrabold bottom-15"></h4>
-      <img data-src="images/pause.png" src="images/empty.png"
-           class="preload-image responsive-image round-element shadow-large" alt="img">
-    </div>
-    <div class="one-third last-column">
-      <h4 class="ultrabold bottom-15"></h4>
-      <img data-src="images/stop.png" src="images/empty.png"
-           class="preload-image responsive-image round-element shadow-large" alt="img">
+
+    <div class="media-footer">
+      <div class="one-third">
+        <h4 class="ultrabold bottom-15"></h4>
+        <i class="bottom-image pause fa fa-pause-circle fa-8x"></i>
+      </div>
+      <div class="one-third">
+        <h4 class="ultrabold bottom-15"></h4>
+        <i class="bottom-image play fa fa-play-circle fa-8x"></i>
+      </div>
+      <div class="one-third last-column">
+        <h4 class="ultrabold bottom-15"></h4>
+        <i class="bottom-image stop fa fa-stop-circle fa-8x"></i>
+      </div>
     </div>
   </div>
 </div>
