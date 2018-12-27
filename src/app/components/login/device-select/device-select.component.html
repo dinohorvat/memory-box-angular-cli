@@ -1,0 +1,25 @@
+<div class="page-content header-clear-larger">
+<div class="content-box shadow-large  bg-white-transparent">
+  <div class="pricing-3 ">
+    <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">SmartPlay {{device_to_authorize}}</h1>
+    <h2 class="pricing-subtitle text-shadow" align="Center">Please Select the USB device you want to control</h2>
+
+    <div class="pricing-3 ">
+      <ul align="center" class="pricing-list">
+        <li ng-repeat="device in available_devices">
+          <div align="center" >
+            <button style="margin: 0px 10px 10px 0px !important;"
+                    class="button-full button button-purple button-device"
+                    ng-click="set_active_usb(device.diskPath)">
+              {{device.description}}
+            </button>
+          </div>
+          <div>
+            <small>Total: <b>{{device.size}}</b> / Free: <b>{{device.free}}</b></small>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
