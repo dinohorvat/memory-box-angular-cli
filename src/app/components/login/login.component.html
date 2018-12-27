@@ -1,0 +1,26 @@
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large bg-white-transparent">
+    <div class="top-25 bottom-15">
+      <div class="pricing-3 bg-white-transparent">
+        <div>
+          <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Welcome</h1>
+          <h2 class="pricing-subtitle text-shadow" align="Center">Log Into A Memory Box</h2>
+        </div>
+        <ul class="pricing-list   bg-white-transparent ">
+          <li ng-repeat="x in allDevs  track by $index">
+            <i>
+              <button class="button-full button   button-purple"> X</button>
+            </i>
+          </li>
+        </ul>
+        <div align="center">
+          <h2 class="pricing-subtitle text-shadow" align="Center">
+            To connect new Memory Box please connect it to your router with the included network cable.
+            <br>Then, click <b>Add New Device</b> below and enter requested info.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
