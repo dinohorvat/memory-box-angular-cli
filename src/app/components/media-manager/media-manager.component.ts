@@ -3,6 +3,7 @@ import {FileElement} from '../file-explorer/model/element';
 import {Observable} from 'rxjs';
 import {FileService} from '../../services/file.service';
 import {GlobalService} from '../../services/global.service';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-media-manager',
@@ -56,8 +57,15 @@ export class MediaManagerComponent implements OnInit {
       alert('Please select items to add in album');
       return;
     }
-    console.log(selectedItems);
+    const albumName = prompt('Please enter new album name');
 
+    if (isNullOrUndefined(albumName)) {
+      return;
+    }
+    this.globalService.createAlbum(albumName, selectedItems).subscribe((res) => {
+      console.log(res);
+      alert('Album Created');
+    });
   }
 
   addFolder(folder: { name: string }) {

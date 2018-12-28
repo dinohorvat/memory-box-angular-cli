@@ -44,6 +44,11 @@ export class GlobalService {
   /**
    * @Media API Calls
    */
+  public createAlbum(albumName, selectedFiles) {
+    const url = this.auth.node_url_1 + '/albums/createAlbum/' + albumName;
+    return this.http.post(url, selectedFiles);
+  }
+
   public getMedia() {
     const url = this.auth.node_url_1 + '/media/files';
     return this.http.get(url);
