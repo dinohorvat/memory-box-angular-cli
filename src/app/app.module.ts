@@ -8,6 +8,7 @@ import {ComponentsModule} from './components/components.module';
 import {FileService} from './services/file.service';
 import {GlobalService} from './services/global.service';
 import {AuthService} from './services/auth.service';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {AuthService} from './services/auth.service';
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
+    HttpClientModule,
     ComponentsModule
   ],
   providers: [FileService, GlobalService, AuthService],
