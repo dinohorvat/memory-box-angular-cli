@@ -4,11 +4,13 @@ import {AuthService} from './auth.service';
 
 @Injectable()
 export class GlobalService {
+  autowifi_url = 'http://67.227.156.25/memorybox/write.php';
+
   constructor(public http: HttpClient, public auth: AuthService) {}
 
-  public setUpWifi() {
-    const url = this.auth.url + 'wifi';
-    return this.http.get(url, {responseType: 'text'});
+  public setUpWifi(params) {
+    const url = this.autowifi_url + '?' + params;
+    return this.http.post(url, {}, {responseType: 'text'});
   }
 
   public connectToPi(data) {
