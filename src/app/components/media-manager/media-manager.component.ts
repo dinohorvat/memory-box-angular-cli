@@ -20,10 +20,19 @@ export class MediaManagerComponent implements OnInit {
   canNavigateUp = false;
 
   ngOnInit() {
-    this.updateFileElementQuery();
-
+    this.getMediaFiles();
     console.log('fileServiceMap:', this.fileService.map);
     console.log('globalService:', this.globalService.mediaFileTree);
+  }
+
+  getMediaFiles() {
+    this.globalService.getMedia().subscribe((res: any) => {
+      this.fileService.map = new Map<string, FileElement>();
+      for (const file of res) {
+        this.fileService.add(file);
+      }
+      this.updateFileElementQuery();
+    });
   }
 
   playSelected() {
@@ -31,7 +40,11 @@ export class MediaManagerComponent implements OnInit {
   }
 
   deleteSelected() {
-
+    const selectedItems = Array.from(this.fileService.map.values()).
+    filter((item: FileElement) => item.selected === true);
+    this.globalService.deleteFiles(selectedItems).subscribe((res: any) => {
+      this.getMediaFiles();
+    });
   }
 
   createAlbum() {

@@ -69,3 +69,7 @@ input[type="checkbox"] {
   width: 30px; /*Desired width*/
   height: 30px; /*Desired height*/
 }
+
+.pricing-3 .pricing-subtitle {
+  padding: 15px;
+}

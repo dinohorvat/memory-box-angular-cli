@@ -40,4 +40,17 @@ export class GlobalService {
     const url = this.auth.node_url_1 + '/devices/set?usb=' + usb;
     return this.http.post(url, {});
   }
+
+  /**
+   * @Media API Calls
+   */
+  public getMedia() {
+    const url = this.auth.node_url_1 + '/media/files';
+    return this.http.get(url);
+  }
+
+  public deleteFiles(selectedFiles) {
+    const url = this.auth.node_url_1 + '/media/delete';
+    return this.http.post(url, selectedFiles);
+  }
 }

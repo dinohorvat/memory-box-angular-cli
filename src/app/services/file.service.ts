@@ -14,6 +14,7 @@ export interface IFileService {
 @Injectable()
 export class FileService implements IFileService {
   public map = new Map<string, FileElement>();
+  querySubject: BehaviorSubject<FileElement[]>;
 
   constructor() {}
 
@@ -33,7 +34,6 @@ export class FileService implements IFileService {
     this.map.set(element.id, element);
   }
 
-  querySubject: BehaviorSubject<FileElement[]>;
   queryInFolder(folderId: string) {
     const result: FileElement[] = [];
     this.map.forEach(element => {

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GlobalService} from '../../../services/global.service';
 import {Router} from '@angular/router';
 import {FileService} from '../../../services/file.service';
+import {FileElement} from '../../file-explorer/model/element';
 
 @Component({
   selector: 'app-device-select',
@@ -28,9 +29,10 @@ export class DeviceSelectComponent implements OnInit {
 
   setActiveDevice(usb) {
     this.globalService.setActiveDevice(usb).subscribe((res: any) => {
-      for (const file of res) {
-        this.fileService.add(file);
-      }
+      // this.fileService.map = new Map<string, FileElement>();
+      // for (const file of res) {
+      //   this.fileService.add(file);
+      // }
       this.router.navigate(['/main/media']);
       console.log(res);
     });
