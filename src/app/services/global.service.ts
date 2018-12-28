@@ -71,6 +71,11 @@ export class GlobalService {
     return this.http.get(url);
   }
 
+  public deleteAlbum(name) {
+    const url = this.auth.node_url_1 + '/albums/deleteAlbum?name=' + name;
+    return this.http.post(url, {});
+  }
+
   public downloadMedia(file) {
     const url = this.auth.node_url_1 + '/media/download';
     return this.http.post(url, file, {responseType: 'blob', observe: 'response'});

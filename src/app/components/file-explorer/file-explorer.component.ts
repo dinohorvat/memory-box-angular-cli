@@ -26,10 +26,14 @@ export class FileExplorerComponent {
   @Output() elementMoved = new EventEmitter<{ element: FileElement; moveTo: FileElement }>();
   @Output() navigatedDown = new EventEmitter<FileElement>();
   @Output() navigatedUp = new EventEmitter();
+  @Output() refreshFiles = new EventEmitter();
 
   selectElement(element: FileElement) {
     element.selected = !element.selected;
     this.elementSelected.emit(element);
+  }
+  reloadFiles() {
+    this.refreshFiles.emit(true);
   }
 
   downloadElement(element: FileElement) {

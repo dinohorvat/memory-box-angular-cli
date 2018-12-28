@@ -29,8 +29,13 @@ export class AlbumsComponent implements OnInit {
 
   }
 
-  deleteAlbum(album) {
-    console.log(album);
-
+  deleteAlbum(albumName) {
+    this.globalService.deleteAlbum(albumName).subscribe((res: any) => {
+      console.log(res);
+      if (res.success) {
+        alert('Album deleted');
+        this.getAlbums();
+      }
+    });
   }
 }

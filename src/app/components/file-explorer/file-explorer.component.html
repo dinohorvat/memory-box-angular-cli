@@ -2,7 +2,7 @@
   <mat-icon *ngIf="canNavigateUp" class="pointer" (click)="navigateUp()">arrow_back</mat-icon>
   <span style="margin-left: 8px">{{path || 'Files'}}</span>
   <span class="spacer"></span>
-  <mat-icon class="pointer" (click)="openNewFolderDialog()">create_new_folder</mat-icon>
+  <mat-icon class="pointer" (click)="reloadFiles()">refresh</mat-icon>
 </mat-toolbar>
 
 <div class="container" fxLayout="row" fxLayoutAlign="space-between stretch">

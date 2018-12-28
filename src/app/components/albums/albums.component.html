@@ -1,3 +1,4 @@
+<div class="page-content header-clear-larger">
 <div class="top-25 bottom-15">
 
   <div class="pricing-3 bg-white-transparent">
@@ -5,7 +6,7 @@
       <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Albums</h1>
       <h2 class="pricing-subtitle text-shadow" align="Center">Select an album to view.</h2>
       <h3 class="pricing-value text-shadow">
-        <a href='#' (click)="getAlbums()"> <img height='75px' width='75px' src='../../../assets/images/refresh.png'> </a>
+        <a (click)="getAlbums()"> <img height='75px' width='75px' src='../../../assets/images/refresh.png'> </a>
       </h3>
     </div>
     <ul align="center" class="pricing-list   bg-white-transparent ">
@@ -17,7 +18,7 @@
                 x.name }}
               </button>
               <div class="icon-column">
-                <i (click)="deleteAlbum(x.listname)"
+                <i (click)="deleteAlbum(x.name)"
                    class="delete-icon fa fa-trash color-white shadow-icon-large fa-5x"></i>
               </div>
             </div>
@@ -28,4 +29,5 @@
       </li>
     </ul>
   </div>
+</div>
 </div>
