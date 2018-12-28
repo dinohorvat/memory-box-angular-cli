@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {FileElement} from '../components/file-explorer/model/element';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class GlobalService {
   public mediaFileTree = new Map<string, FileElement>();
+  public activeUSB: BehaviorSubject<Usb>;
 
   constructor(public http: HttpClient, public auth: AuthService) {}
 
@@ -59,8 +61,22 @@ export class GlobalService {
     return this.http.post(url, file, {responseType: 'blob', observe: 'response'});
   }
 
+  public uploadMedia(file) {
+    console.log(file);
+    const formData = new FormData();
+    formData.append('mediaFile', file);
+    const url = this.auth.node_url_1 + '/media/upload';
+    return this.http.post(url, formData);
+  }
+
   public deleteFiles(selectedFiles) {
     const url = this.auth.node_url_1 + '/media/delete';
     return this.http.post(url, selectedFiles);
   }
+}
+
+export interface Usb {
+  description: string;
+  size: string;
+  free: string;
 }

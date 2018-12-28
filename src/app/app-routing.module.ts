@@ -32,7 +32,7 @@ const routes: Routes = [
           {path: 'device', component: DeviceSetupComponent, canActivate: [AuthGuard]},
           {path: 'deviceselect', component: DeviceSelectComponent, canActivate: [AuthGuard]},
           {path: 'export', component: ExportMediaComponent, canActivate: [AuthGuard]},
-          {path: 'import', component: ImportMediaComponent, canActivate: [AuthGuard]},
+          {path: 'import', component: ImportMediaComponent},
           {path: 'media', component: MediaManagerComponent, canActivate: [AuthGuard]},
           {path: 'playing', component: PlayingNowComponent, canActivate: [AuthGuard]},
           {path: 'pin', component: PinPageComponent, canActivate: [PinGuard]},

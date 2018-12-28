@@ -3,6 +3,7 @@ import {GlobalService} from '../../../services/global.service';
 import {Router} from '@angular/router';
 import {FileService} from '../../../services/file.service';
 import {FileElement} from '../../file-explorer/model/element';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-device-select',
@@ -28,7 +29,8 @@ export class DeviceSelectComponent implements OnInit {
   }
 
   setActiveDevice(usb) {
-    this.globalService.setActiveDevice(usb).subscribe((res: any) => {
+    this.globalService.activeUSB = new BehaviorSubject(usb);
+    this.globalService.setActiveDevice(usb.diskPath).subscribe((res: any) => {
       // this.fileService.map = new Map<string, FileElement>();
       // for (const file of res) {
       //   this.fileService.add(file);

@@ -1,1 +1,32 @@
 <!--<input type="file" multiple="multiple" [name]="files[]" />-->
+
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large bg-white-transparent">
+    <div class="top-25 bottom-15">
+      <div class="pricing-3 bg-white-transparent body-import">
+        <div>
+          <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Import Media</h1>
+          <h2 class="pricing-subtitle text-shadow" align="Center">
+            Upload files to <b>{{usb?.description}}</b>
+            <br>
+            Size: <b>{{usb?.size}}</b> / Free: <b>{{usb?.free}}</b>
+          </h2>
+        </div>
+        <div class="upload-wrap">
+          <div class="icon-column">
+            <i (click)="uploader.click()" [ngClass]="
+            {'fa-cloud-upload-alt ': uploadStatus === 'WAITING',
+             'fa-spinner fa-spin': uploadStatus === 'UPLOADING',
+             'fa-check-circle': uploadStatus === 'DONE'}"
+               class="fa color-white shadow-icon-large fa-5x"></i>
+            <input class="input-upload" name="mediaFile" hidden type="file" #uploader
+                   (change)="uploadFile($event)"/>
+          </div>
+        </div>
+        <button *ngIf="uploadStatus === 'DONE'" (click)="uploadAnother();" class="button-full upload-another button button-purple">Upload Another File</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+

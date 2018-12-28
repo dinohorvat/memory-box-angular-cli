@@ -53,7 +53,9 @@ export class MediaManagerComponent implements OnInit {
     const selectedItems = Array.from(this.fileService.map.values()).
     filter((item: FileElement) => item.selected === true);
     this.globalService.deleteFiles(selectedItems).subscribe((res: any) => {
-      this.getMediaFiles();
+      if (res.success) {
+        this.getMediaFiles();
+      }
     });
   }
 
