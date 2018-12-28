@@ -1,11 +1,13 @@
 <div class="page-content header-clear-larger">
 <div style="height: 100%; box-sizing: border-box;">
   <mat-card style="height: 100%; box-sizing: border-box; padding:0">
-    <app-file-explorer  [fileElements]="fileElements | async"
+    <app-file-explorer
+                    [fileElements]="fileElements | async"
                     [path]="currentPath"
                     [canNavigateUp]="canNavigateUp"
                     (folderAdded)="addFolder($event)"
                     (elementRemoved)="removeElement($event)"
+                    (elementSelected)="selectElement($event)"
                     (navigatedDown)="navigateToFolder($event)"
                     (navigatedUp)="navigateUp()"
                     (elementRenamed)="renameElement($event)"
@@ -21,7 +23,7 @@
 
       <p class="bottom-0">
 
-        <a href="#" ng-click="sendChecked()" class="button button-green">Play</a>
+        <button (click)="playSelected()" class="button button-green">Play</button>
 
       </p>
     </div>
@@ -30,7 +32,7 @@
 
       <p class="bottom-0">
 
-        <a href="#" ng-click="deleteChecked()" class="button button-red">Delete</a>
+        <button (click)="deleteSelected()" class="button button-red">Delete</button>
 
       </p>
     </div>
@@ -41,7 +43,7 @@
 
       <p class="bottom-0">
 
-        <a href="#" ng-click="createAlbum()" class="button button-blue">Create Album</a>
+        <button (click)="createAlbum()" class="button button-blue">Create Album</button>
 
       </p>
     </div>

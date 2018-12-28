@@ -26,8 +26,34 @@ export class MediaManagerComponent implements OnInit {
     console.log('globalService:', this.globalService.mediaFileTree);
   }
 
+  playSelected() {
+
+  }
+
+  deleteSelected() {
+
+  }
+
+  createAlbum() {
+    console.log(this.fileService.map);
+    const selectedItems = Array.from(this.fileService.map.values()).
+                  filter((item: FileElement) => item.selected === true);
+    console.log(selectedItems);
+    if (selectedItems.length === 0) {
+      alert('Please select items to add in album');
+      return;
+    }
+    console.log(selectedItems);
+
+  }
+
   addFolder(folder: { name: string }) {
-    this.fileService.add({ isFolder: true, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
+    this.fileService.add({ isFolder: true, selected: false, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
+    this.updateFileElementQuery();
+  }
+
+  selectElement(element: FileElement) {
+    this.fileService.update(element.id, {selected: element.selected});
     this.updateFileElementQuery();
   }
 
