@@ -23,10 +23,10 @@
 
 <mat-menu #rootMenu="matMenu" [overlapTrigger]="false">
   <ng-template matMenuContent let-element="element">
-    <button mat-menu-item [matMenuTriggerFor]="moveToMenu" [matMenuTriggerData]="{self: element}">
-      <mat-icon>open_with</mat-icon>
-      <span>Move To</span>
-    </button>
+    <!--<button mat-menu-item [matMenuTriggerFor]="moveToMenu" [matMenuTriggerData]="{self: element}">-->
+      <!--<mat-icon>open_with</mat-icon>-->
+      <!--<span>Move To</span>-->
+    <!--</button>-->
     <button mat-menu-item (click)="downloadElement(element)">
       <mat-icon>cloud_download</mat-icon>
       <span>Download</span>

@@ -65,6 +65,7 @@ export class FileExplorerComponent {
 
   openRenameDialog(element: FileElement) {
     const dialogRef = this.dialog.open(RenameDialogComponent);
+    dialogRef.componentInstance.currentName = element.name;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         element.name = res;
