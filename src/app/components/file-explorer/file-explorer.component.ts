@@ -21,6 +21,7 @@ export class FileExplorerComponent {
   @Output() folderAdded = new EventEmitter<{ name: string }>();
   @Output() elementRemoved = new EventEmitter<FileElement>();
   @Output() elementSelected = new EventEmitter<FileElement>();
+  @Output() elementDownload = new EventEmitter<FileElement>();
   @Output() elementRenamed = new EventEmitter<FileElement>();
   @Output() elementMoved = new EventEmitter<{ element: FileElement; moveTo: FileElement }>();
   @Output() navigatedDown = new EventEmitter<FileElement>();
@@ -29,6 +30,10 @@ export class FileExplorerComponent {
   selectElement(element: FileElement) {
     element.selected = !element.selected;
     this.elementSelected.emit(element);
+  }
+
+  downloadElement(element: FileElement) {
+    this.elementDownload.emit(element);
   }
 
   deleteElement(element: FileElement) {

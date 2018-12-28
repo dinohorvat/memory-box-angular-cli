@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {FileElement} from '../components/file-explorer/model/element';
 
@@ -52,6 +52,11 @@ export class GlobalService {
   public getMedia() {
     const url = this.auth.node_url_1 + '/media/files';
     return this.http.get(url);
+  }
+
+  public downloadMedia(file) {
+    const url = this.auth.node_url_1 + '/media/download';
+    return this.http.post(url, file, {responseType: 'blob', observe: 'response'});
   }
 
   public deleteFiles(selectedFiles) {

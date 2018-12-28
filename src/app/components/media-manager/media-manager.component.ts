@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {FileService} from '../../services/file.service';
 import {GlobalService} from '../../services/global.service';
 import {isNullOrUndefined} from 'util';
+import saveAs from 'file-saver';
 
 @Component({
   selector: 'app-media-manager',
@@ -33,6 +34,14 @@ export class MediaManagerComponent implements OnInit {
         this.fileService.add(file);
       }
       this.updateFileElementQuery();
+    });
+  }
+
+  downloadElement(element: FileElement) {
+    this.globalService.downloadMedia(element).subscribe((res): any => {
+      const content = res.body;
+      const fileName = res.headers.get('content-filename');
+      saveAs(content, fileName);
     });
   }
 
