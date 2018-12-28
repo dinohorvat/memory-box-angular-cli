@@ -42,7 +42,9 @@ export class LocalStoreService {
       tx = JSON.parse(this.ls.getItem('dArr1'));
 
 
-      if (tx == null) { this.ls.setItem('dArr1', JSON.stringify(dArr1)); }
+      if (tx == null) {
+        this.ls.setItem('dArr1', JSON.stringify(dArr1));
+      }
 
       console.log('tx');
       console.log(tx);

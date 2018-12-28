@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GlobalService} from '../../services/global.service';
 import {LocalStoreService} from '../../services/local-store.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-device-new',
@@ -11,11 +12,12 @@ import {LocalStoreService} from '../../services/local-store.service';
 export class DeviceNewComponent implements OnInit {
 
   wifiStatus: string;
-  mySerial: string = 'b8-27-eb-9c-00-ad';
-  myWifiPass: string = 'A3JVQbE9';
-  mySSID: string = 'MIWIFI_5G_hSAx';
+  mySerial = 'b8-27-eb-9c-00-ad';
+  myWifiPass = 'A3JVQbE9';
+  mySSID = 'MIWIFI_5G_hSAx';
 
-  constructor(private globalService: GlobalService, private storage: LocalStoreService) {}
+  constructor(private globalService: GlobalService, private storage: LocalStoreService,
+              private router: Router) {}
   ngOnInit(): void {
 
   }
@@ -39,6 +41,7 @@ export class DeviceNewComponent implements OnInit {
             this.storage.setItem(this.mySerial, response);
             this.storage.getAllDevices();
 
+            this.router.navigate(['/main/login']);
           } else {
             this.wifiStatus = 'Invalid IP address,please wait for Memory Box to update IP';
           }

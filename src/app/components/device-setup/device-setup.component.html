@@ -1,0 +1,56 @@
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large  bg-white-transparent">
+    <div class="pricing-3 ">
+      <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Device Setup</h1>
+      <h2 class="pricing-subtitle text-shadow" align="Center">Change the device name</h2>
+      <h3 class="pricing-value text-shadow">
+      </h3>
+      <div class="pricing-3 ">
+        <ul align="center" class="pricing-list">
+
+          <li align="center">
+
+            <i align="center">
+
+
+              <div class="input-simple-2 textarea has-icon"><i class="fa fa-edit"></i>
+
+                <textarea class="textarea-simple-2" [(ngModel)]="deviceName"
+                          placeholder="Enter Device Name"></textarea>
+
+              </div>
+
+            </i>
+          </li>
+          <li>
+            <i align="center">
+
+              <button class="button-full button button-purple" (click)="saveDeviceName()">Apply</button>
+
+            </i></li>
+          <h2 class="pricing-subtitle text-shadow" style="border-bottom: none" align="Center">Change the device PIN</h2>
+
+          <div class="input-simple-2 textarea has-icon" style="margin-bottom: 20px;"><i class="fa fa-edit"></i>
+
+            <input class="textarea-simple-2" type="number" [(ngModel)]="oldPin"
+                   placeholder="Enter Current PIN"/>
+
+          </div>
+          <div class="input-simple-2 textarea has-icon"><i class="fa fa-edit"></i>
+
+            <input class="textarea-simple-2" type="number" [(ngModel)]="newPin"
+                   placeholder="Enter New PIN"/>
+
+          </div>
+          <i align="center">
+
+            <button ng-disabled="!newPin && !oldPin" class="button-full button   button-purple" (click)="savePin()">
+              Apply
+            </button>
+
+          </i>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

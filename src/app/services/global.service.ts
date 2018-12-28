@@ -43,6 +43,16 @@ export class GlobalService {
     return this.http.post(url, {});
   }
 
+  public setDeviceName(name) {
+    const url = this.auth.node_url_1 + '/devices/setDeviceName/' + name;
+    return this.http.post(url, {});
+  }
+
+  public setPin(newPin, oldPin) {
+    const url = this.auth.node_url_1 + '/devices/changepin?new=' + newPin + '&old=' + oldPin;
+    return this.http.post(url, {});
+  }
+
   /**
    * @Media API Calls
    */
@@ -53,6 +63,11 @@ export class GlobalService {
 
   public getMedia() {
     const url = this.auth.node_url_1 + '/media/files';
+    return this.http.get(url);
+  }
+
+  public getAlbums() {
+    const url = this.auth.node_url_1 + '/albums';
     return this.http.get(url);
   }
 

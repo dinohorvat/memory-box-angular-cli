@@ -1,0 +1,27 @@
+.album-select {
+  display: inline-block;
+  justify-content: space-evenly;
+}
+.pricing-3 .button {
+  margin: 0;
+  max-width: 65%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.icon-column {
+  margin-right: 40px;
+}
+
+.delete-icon {
+  font-size: 25px;
+  margin-top: 0;
+  line-height: 40px;
+  padding-right: 0 !important;
+  width: 45px !important;
+  height: 45px;
+  background: #ED3A3E;
+}
