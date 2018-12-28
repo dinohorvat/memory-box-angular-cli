@@ -1,0 +1,41 @@
+<div class="content-box shadow-large  bg-white-transparent">
+  <div class="pricing-3 ">
+    <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">SmartPlay {{device_to_authorize}}</h1>
+    <h2 class="pricing-subtitle text-shadow" align="Center">Please Enter Your Personal PIN Number</h2>
+    <h3 class="pricing-value text-shadow">
+    </h3>
+
+
+    <div class="pricing-3 ">
+      <ul align="center" class="pricing-list">
+
+        <li align="center">
+
+          <i align="center">
+
+
+            <div class="input-simple-2 textarea has-icon">
+
+              <i class="fa fa-edit"></i>
+              <input type="text" class="textarea-simple-2" [(ngModel)]="pin"
+                     placeholder="Enter Device PIN"></div>
+          </i>
+        </li>
+        <i class="fa "></i>
+        <p></p>
+        <li>
+
+
+          <i align="center">
+
+            <button class="button-full button   button-purple" (click)="authenticate()">Apply
+              PIN
+            </button>
+
+          </i></li>
+
+
+      </ul>
+    </div>
+  </div>
+</div>

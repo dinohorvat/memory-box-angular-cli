@@ -12,6 +12,8 @@ import {MediaManagerComponent} from './components/media-manager/media-manager.co
 import {DeviceNewComponent} from './components/device-new/device-new.component';
 import {DeviceSelectComponent} from './components/login/device-select/device-select.component';
 import {PinPageComponent} from './components/login/pin-page/pin-page.component';
+import {AuthGuard} from './services/auth.guard';
+import {PinGuard} from './services/pin.guard';
 
 const routes: Routes = [
     {
@@ -24,16 +26,16 @@ const routes: Routes = [
         component: MainComponent,
         children: [
           {path: 'login', component: LoginComponent},
-          {path: 'albums', component: AlbumsComponent},
-          {path: 'backup', component: BackupMediaComponent},
+          {path: 'albums', component: AlbumsComponent, canActivate: [AuthGuard]},
+          {path: 'backup', component: BackupMediaComponent, canActivate: [AuthGuard]},
           {path: 'new', component: DeviceNewComponent},
-          {path: 'device', component: DeviceSetupComponent},
-          {path: 'deviceselect', component: DeviceSelectComponent},
-          {path: 'export', component: ExportMediaComponent},
-          {path: 'import', component: ImportMediaComponent},
-          {path: 'media', component: MediaManagerComponent},
-          {path: 'playing', component: PlayingNowComponent},
-          {path: 'pin', component: PinPageComponent},
+          {path: 'device', component: DeviceSetupComponent, canActivate: [AuthGuard]},
+          {path: 'deviceselect', component: DeviceSelectComponent, canActivate: [AuthGuard]},
+          {path: 'export', component: ExportMediaComponent, canActivate: [AuthGuard]},
+          {path: 'import', component: ImportMediaComponent, canActivate: [AuthGuard]},
+          {path: 'media', component: MediaManagerComponent, canActivate: [AuthGuard]},
+          {path: 'playing', component: PlayingNowComponent, canActivate: [AuthGuard]},
+          {path: 'pin', component: PinPageComponent, canActivate: [PinGuard]},
         ]
     }
 ];

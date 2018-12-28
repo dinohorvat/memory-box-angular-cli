@@ -9,9 +9,13 @@ import {LocalStoreService} from './local-store.service';
 })
 export class AuthService {
   authenticated = false;
-  port = ':31415';
-  url = 'http://192.168.1.139:3000/';
-  userToken = '';
+  allowPinPage = false;
+
+  current_pi_ip;
+  current_mac;
+  node_url_1;
+  piweb_url_1;
+  autowifi_url = 'http://67.227.156.25/memorybox/write.php';
   constructor(
     private store: LocalStoreService,
     private router: Router
@@ -20,13 +24,6 @@ export class AuthService {
   }
 
   checkAuth() {
-    this.authenticated = this.store.getItem('vol_user');
-    this.userToken = this.store.getItem('V_USER');
-  }
-
-  signin(credentials) {
-    this.authenticated = true;
-    this.store.setItem('vol_user', true);
-    return of({}).pipe(delay(1500));
+    this.authenticated = this.store.getItem(this.current_mac);
   }
 }

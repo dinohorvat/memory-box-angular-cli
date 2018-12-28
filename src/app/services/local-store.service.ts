@@ -83,7 +83,7 @@ export class LocalStoreService {
     try {
       this.allDevs = filtArr;
 
-      return filtArr;
+      return getDevs;
     } catch (err) {}
 
   }

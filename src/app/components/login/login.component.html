@@ -7,9 +7,9 @@
           <h2 class="pricing-subtitle text-shadow" align="Center">Log Into A Memory Box</h2>
         </div>
         <ul class="pricing-list   bg-white-transparent ">
-          <li ng-repeat="x in allDevs  track by $index">
+          <li *ngFor="let device of allDevs">
             <i>
-              <button (click)="deviceSelect()" class="button-full button button-purple"> X</button>
+              <button (click)="goToPin(device)" class="button-full button button-purple">{{device}}</button>
             </i>
           </li>
         </ul>
