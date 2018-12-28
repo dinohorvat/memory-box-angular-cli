@@ -1,0 +1,74 @@
+<div class="page-content header-clear-larger">
+<div class="content-box shadow-large bg-white-transparent">
+  <div class="top-25 bottom-15">
+    <h3 class="bottom-10 center-text">Backup Media</h3>
+    <h2 style="text-align: center;" class="bottom-10">Both USB drives must be attached.</h2>
+
+    <div class="pricing-3 ">
+      <ul align="center" class="pricing-list">
+
+
+        <li align="center">
+
+          <div class="input-simple-2 textarea has-icon">
+            A: <!--<input type="text" class="textarea-simple-2" readonly ng-model="backup_src"-->
+            <!--placeholder="Source">-->
+            <select class="textarea-simple-2" [(ngModel)]="backupSrc">
+              <option value="" disabled selected>Select source</option>
+              <option *ngFor="let item of available_devices" value="{{item.diskPath}}">{{item.description}}</option>
+            </select>
+          </div>
+
+        </li>
+
+
+        <li align="center">
+
+          <div class="input-simple-2 textarea has-icon">
+
+            B: <!--<input type="text" class="textarea-simple-2" readonly ng-model="backup_dest"-->
+            <!--placeholder="Destination">-->
+            <select class="textarea-simple-2" [(ngModel)]="backupDesc">
+              <option value="" disabled selected>Select destination</option>
+              <option *ngFor="let item of available_devices" value="{{item.diskPath}}">{{item.description}}</option>
+            </select>
+          </div>
+
+        </li>
+
+
+        <p>{{backup_message}}</p>
+        <li>
+
+          <button class="button-full button uppercase  button-purple" (click)="getDeviceList()">Refresh
+            List
+          </button>
+
+
+        </li>
+      </ul>
+    </div>
+    <span *ngIf="available">
+    <p class="bottom-20">
+      <button (click)="startbackup('ab')"
+         class="button button-full button-green-3d button-green uppercase ultrabold">Copy A to B </button>
+
+    </p>
+
+    <p class="bottom-20">
+      <button (click)="startbackup('ba')"
+         class="button button-full button-green-3d button-green uppercase ultrabold">Copy B to A</button>
+
+    </p>
+      </span>
+    <span *ngIf="!available">
+          <p class="bottom-20">
+            Please make sure that you have at least 2 devices connected.
+          </p>
+    </span>
+
+    <div class="decoration opacity-50 bottom-10"></div>
+
+  </div>
+</div>
+</div>
