@@ -19,7 +19,7 @@ export class PinPageComponent implements OnInit {
 
   authenticate() {
     this.globalService.authenticateWithPin(this.pin).subscribe((res: any) => {
-      if (res === 'OK pin') {
+      if (res.success) {
         alert('You are connected now.');
         this.auth.authenticated = true;
         this.router.navigate(['/main/deviceselect']);

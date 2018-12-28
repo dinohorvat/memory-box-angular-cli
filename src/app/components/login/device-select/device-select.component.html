@@ -1,7 +1,7 @@
 <div class="page-content header-clear-larger">
 <div class="content-box shadow-large  bg-white-transparent">
   <div class="pricing-3 ">
-    <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">SmartPlay device_to_authoritize</h1>
+    <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">SmartPlay</h1>
     <h2 class="pricing-subtitle text-shadow" align="Center">Please Select the USB device you want to control</h2>
 
     <div class="pricing-3 ">
@@ -10,7 +10,7 @@
           <div align="center" >
             <button style="margin: 0px 10px 10px 0px !important;"
                     class="button-full button button-purple button-device"
-                    (click)="set_active_usb(device.diskPath)">
+                    (click)="setActiveDevice(device.diskPath)">
               {{device.description}}
             </button>
           </div>

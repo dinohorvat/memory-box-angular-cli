@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     const ip = localStorage.getItem(mac);
     this.auth.current_pi_ip = ip;
     this.auth.current_mac = mac;
-    this.auth.node_url_1 = 'http://' + ip.trim() + ':31415';
+    this.auth.node_url_1 = 'http://' + ip.trim() + ':3000';
     this.auth.piweb_url_1 = 'http://' + ip.trim();
     this.auth.allowPinPage = true;
     this.router.navigate(['/main/pin']);
