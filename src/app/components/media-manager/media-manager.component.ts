@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FileElement} from '../file-explorer/model/element';
 import {Observable} from 'rxjs';
 import {FileService} from '../../services/file.service';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
   selector: 'app-media-manager',
@@ -12,28 +13,17 @@ import {FileService} from '../../services/file.service';
 export class MediaManagerComponent implements OnInit {
   public fileElements: Observable<FileElement[]>;
 
-  constructor(public fileService: FileService) {}
+  constructor(public fileService: FileService, public globalService: GlobalService) {}
 
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
 
   ngOnInit() {
-    const folderA = this.fileService.add({ name: 'Folder A', isFolder: true, parent: 'root' });
-    this.fileService.add({ name: 'Folder Bdasd', isFolder: true, parent: 'root' });
-    this.fileService.add({ name: 'Folder C', isFolder: true, parent: folderA.id });
-    this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B.mp3', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-
     this.updateFileElementQuery();
+
+    console.log('fileServiceMap:', this.fileService.map);
+    console.log('globalService:', this.globalService.mediaFileTree);
   }
 
   addFolder(folder: { name: string }) {

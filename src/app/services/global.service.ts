@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from './auth.service';
+import {FileElement} from '../components/file-explorer/model/element';
 
 @Injectable()
 export class GlobalService {
+  public mediaFileTree = new Map<string, FileElement>();
 
-  mediaFileTree = [];
   constructor(public http: HttpClient, public auth: AuthService) {}
 
   /**

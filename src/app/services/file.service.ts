@@ -13,7 +13,7 @@ export interface IFileService {
 
 @Injectable()
 export class FileService implements IFileService {
-  private map = new Map<string, FileElement>();
+  public map = new Map<string, FileElement>();
 
   constructor() {}
 

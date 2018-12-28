@@ -44,7 +44,7 @@ export class FileExplorerComponent {
   }
 
   openNewFolderDialog() {
-    let dialogRef = this.dialog.open(NewFolderDialogComponent);
+    const dialogRef = this.dialog.open(NewFolderDialogComponent);
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.folderAdded.emit({ name: res });

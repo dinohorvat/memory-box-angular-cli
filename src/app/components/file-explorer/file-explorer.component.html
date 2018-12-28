@@ -13,7 +13,8 @@
         <div fxLayout="column" fxLayoutAlign="space-between center" (click)="navigate(element)" (contextmenu)="openMenu($event, menuTrigger)">
           <mat-icon color="primary" class="file-or-folder-icon pointer" *ngIf="element.isFolder">folder</mat-icon>
           <mat-icon color="primary" class="file-or-folder-icon pointer" *ngIf="!element.isFolder">insert_drive_file</mat-icon>
-          <span>{{element.name}}</span>
+          <span class="item-name">{{ (element.name.length > 6)? (element.name | slice:0:6) + '...' +
+            (element.name | slice:element.name.length-8:element.name.length):(element.name)}}</span>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
