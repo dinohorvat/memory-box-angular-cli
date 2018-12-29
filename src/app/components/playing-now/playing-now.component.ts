@@ -15,21 +15,31 @@ export class PlayingNowComponent implements OnInit {
   }
 
   nextMedia() {
-    this.globalService.next();
+    this.globalService.nextMedia().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   prevMedia() {
-    this.globalService.prev();
+    this.globalService.prevMedia().subscribe((res) => {
+      console.log(res);
+    });
   }
   playMedia() {
-    this.globalService.play();
+    this.globalService.play().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   pauseMedia() {
-    this.globalService.pause();
+    this.globalService.pauseMedia().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   stopMedia() {
-    this.globalService.stop();
+    this.globalService.stopMedia().subscribe((res) => {
+      console.log(res);
+    });
   }
 }

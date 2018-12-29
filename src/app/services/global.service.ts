@@ -73,12 +73,12 @@ export class GlobalService {
     return this.http.post(url, this.activePlayList);
   }
 
-  public next() {
+  public nextMedia() {
     const url = this.auth.node_url_1 + '/playlist/next';
     return this.http.get(url);
   }
 
-  public prev() {
+  public prevMedia() {
     const url = this.auth.node_url_1 + '/playlist/prev';
     return this.http.get(url);
   }
@@ -88,12 +88,12 @@ export class GlobalService {
     return this.http.get(url);
   }
 
-  public pause() {
+  public pauseMedia() {
     const url = this.auth.node_url_1 + '/playlist/pause';
     return this.http.get(url);
   }
 
-  public stop() {
+  public stopMedia() {
     const url = this.auth.node_url_1 + '/playlist/stop';
     return this.http.get(url);
   }

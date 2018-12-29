@@ -8,7 +8,7 @@
                     [canRefresh]="canRefresh"
                     [canNavigateUp]="canNavigateUp"
                     (folderAdded)="addFolder($event)"
-                    (elementRemoved)="removeElement($event)"
+                    (elementRemoved)="removeElement($event, false)"
                     (elementDownload)="downloadElement($event)"
                     (elementSelected)="selectElement($event)"
                     (navigatedDown)="navigateToFolder($event)"
