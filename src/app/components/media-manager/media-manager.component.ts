@@ -67,7 +67,7 @@ export class MediaManagerComponent implements OnInit {
     }
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
-        path: item.path,
+        path: item.path.substring('/home/pi/jp/SmartPlay/express-server/assets'.length),
         type: 'photo'
       };
       return _item;
