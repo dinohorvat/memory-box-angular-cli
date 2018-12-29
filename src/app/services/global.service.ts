@@ -9,6 +9,8 @@ export class GlobalService {
   public mediaFileTree = new Map<string, FileElement>();
   public activeUSB: BehaviorSubject<Usb>;
 
+  public activePlayList = [];
+
   constructor(public http: HttpClient, public auth: AuthService) {}
 
   /**
@@ -64,6 +66,11 @@ export class GlobalService {
   public getMedia() {
     const url = this.auth.node_url_1 + '/media/files';
     return this.http.get(url);
+  }
+
+  public playMedia() {
+    const url = this.auth.node_url_1 + '/playlist';
+    return this.http.post(url, this.activePlayList);
   }
 
   public getAlbums() {

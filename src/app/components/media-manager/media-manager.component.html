@@ -4,6 +4,8 @@
     <app-file-explorer
                     [fileElements]="fileElements | async"
                     [path]="currentPath"
+                    [name]="mediaManagerName"
+                    [canRefresh]="canRefresh"
                     [canNavigateUp]="canNavigateUp"
                     (folderAdded)="addFolder($event)"
                     (elementRemoved)="removeElement($event)"

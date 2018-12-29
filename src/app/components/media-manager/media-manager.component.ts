@@ -5,6 +5,7 @@ import {FileService} from '../../services/file.service';
 import {GlobalService} from '../../services/global.service';
 import {isNullOrUndefined} from 'util';
 import saveAs from 'file-saver';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 
 @Component({
   selector: 'app-media-manager',
@@ -14,21 +15,33 @@ import saveAs from 'file-saver';
 
 export class MediaManagerComponent implements OnInit {
   public fileElements: Observable<FileElement[]>;
-
-  constructor(public fileService: FileService, public globalService: GlobalService) {}
+  public mediaManagerName = 'Media Manager';
+  constructor(public fileService: FileService, public globalService: GlobalService,
+              public router: Router, public _route: ActivatedRoute) {}
 
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
+  canRefresh = true;
 
   ngOnInit() {
-    this.getMediaFiles();
-    console.log('fileServiceMap:', this.fileService.map);
-    console.log('globalService:', this.globalService.mediaFileTree);
+    // If it's not a call from Album --- Load media from API
+    this._route.queryParams.subscribe((params) => {
+      if (!params.album) {
+        this.getMediaFiles();
+        console.log('fileServiceMap:', this.fileService.map);
+        console.log('globalService:', this.globalService.mediaFileTree);
+      } else {
+        this.canRefresh = false;
+        this.mediaManagerName = params.albumName;
+        this.updateFileElementQuery();
+      }
+    });
   }
 
   getMediaFiles() {
     this.globalService.getMedia().subscribe((res: any) => {
+      console.log('media', res);
       this.fileService.map = new Map<string, FileElement>();
       for (const file of res) {
         this.fileService.add(file);
@@ -46,7 +59,25 @@ export class MediaManagerComponent implements OnInit {
   }
 
   playSelected() {
-
+    const selectedItems = Array.from(this.fileService.map.values()).
+    filter((item: FileElement) => item.selected === true);
+    if (selectedItems.length === 0) {
+      alert('Please select media to play');
+      return;
+    }
+    const _tempPlayList = selectedItems.map( (item: any) => {
+      const _item = {
+        path: item.path,
+        type: 'photo'
+      };
+      return _item;
+    });
+    console.log(_tempPlayList);
+    this.globalService.activePlayList = _tempPlayList;
+    this.globalService.playMedia().subscribe((res: any) => {
+      console.log(res);
+      this.router.navigate(['/main/playing']);
+    });
   }
 
   deleteSelected() {
@@ -54,7 +85,9 @@ export class MediaManagerComponent implements OnInit {
     filter((item: FileElement) => item.selected === true);
     this.globalService.deleteFiles(selectedItems).subscribe((res: any) => {
       if (res.success) {
-        this.getMediaFiles();
+        for (const element of selectedItems) {
+          this.removeElement(element, true);
+        }
       }
     });
   }
@@ -65,7 +98,7 @@ export class MediaManagerComponent implements OnInit {
                   filter((item: FileElement) => item.selected === true);
     console.log(selectedItems);
     if (selectedItems.length === 0) {
-      alert('Please select items to add in album');
+      alert('Please select media to add in album');
       return;
     }
     const albumName = prompt('Please enter new album name');
@@ -89,9 +122,20 @@ export class MediaManagerComponent implements OnInit {
     this.updateFileElementQuery();
   }
 
-  removeElement(element: FileElement) {
-    this.fileService.delete(element.id);
-    this.updateFileElementQuery();
+  removeElement(element: FileElement, redButton) {
+    // Red Button --> if request is coming from a click in footer
+    if (redButton) {
+      this.fileService.delete(element.id);
+      this.updateFileElementQuery();
+    } else {
+      const selectedFile = [element];
+      this.globalService.deleteFiles(selectedFile).subscribe((res: any) => {
+        if (res.success) {
+          this.fileService.delete(element.id);
+          this.updateFileElementQuery();
+        }
+      });
+    }
   }
 
   navigateToFolder(element: FileElement) {

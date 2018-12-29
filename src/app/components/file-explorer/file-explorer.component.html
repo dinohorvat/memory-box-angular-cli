@@ -1,8 +1,8 @@
 <mat-toolbar>
   <mat-icon *ngIf="canNavigateUp" class="pointer" (click)="navigateUp()">arrow_back</mat-icon>
-  <span style="margin-left: 8px">{{path || 'Files'}}</span>
+  <span style="margin-left: 8px">{{name}}</span>
   <span class="spacer"></span>
-  <mat-icon class="pointer" (click)="reloadFiles()">refresh</mat-icon>
+  <mat-icon *ngIf="canRefresh" class="pointer" (click)="reloadFiles()">refresh</mat-icon>
 </mat-toolbar>
 
 <div class="container" fxLayout="row" fxLayoutAlign="space-between stretch">

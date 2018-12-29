@@ -16,7 +16,9 @@ export class FileExplorerComponent {
 
   @Input() fileElements: FileElement[];
   @Input() canNavigateUp: string;
+  @Input() canRefresh: boolean;
   @Input() path: string;
+  @Input() name: string;
 
   @Output() folderAdded = new EventEmitter<{ name: string }>();
   @Output() elementRemoved = new EventEmitter<FileElement>();
