@@ -22,7 +22,7 @@ export class MediaManagerComponent implements OnInit {
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
-  canRefresh = true;
+  canRefresh = true; // Also used to distinguish if the Media Manager is in Album view (Triggered from Album)
 
   ngOnInit() {
     // If it's not a call from Album --- Load media from API
@@ -65,9 +65,38 @@ export class MediaManagerComponent implements OnInit {
       alert('Please select media to play');
       return;
     }
+    // Creating temporary playlist
+    if (this.canRefresh) {
+      this.globalService.createTemporaryPlaylist(selectedItems).subscribe((res) => {
+        console.log(res);
+        this.playTempPlayListItems(selectedItems);
+      });
+    } else {
+      this.playAlbumItems(selectedItems);
+    }
+  }
+
+  playAlbumItems(selectedItems) {
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
         path: item.path.substring('/home/pi/jp/SmartPlay/express-server/assets'.length),
+        type: 'photo'
+      };
+      return _item;
+    });
+    console.log(_tempPlayList);
+    this.globalService.activePlayList = _tempPlayList;
+    this.globalService.playMedia().subscribe((res: any) => {
+      console.log(res);
+      this.router.navigate(['/main/playing']);
+    });
+  }
+
+  playTempPlayListItems(selectedItems) {
+    console.log(selectedItems);
+    const _tempPlayList = selectedItems.map( (item: any) => {
+      const _item = {
+        path: '/data/tempPlaylist/' + item.name,
         type: 'photo'
       };
       return _item;

@@ -5,7 +5,7 @@
     <div class="media-header">
       <div>
         <h4 class="ultrabold bottom-15"></h4>
-        <i class="fa fa-angle-double-left fa-8x"></i>
+        <i (click)="prevMedia();" class="fa fa-angle-double-left fa-8x"></i>
 
       </div>
       <div class="bg-white-transparent">
@@ -19,7 +19,7 @@
       </div>
       <div>
         <h4 class="ultrabold bottom-15"></h4>
-        <i class="fa fa-angle-double-right fa-8x"></i>
+        <i (click)="nextMedia();" class="fa fa-angle-double-right fa-8x"></i>
       </div>
     </div>
 
@@ -31,9 +31,9 @@
     <div class="decoration"></div>
 
     <div class="media-footer">
-     <div><i class="bottom-image pause fa fa-pause-circle fa-8x"></i></div>
-      <div><i class="bottom-image play fa fa-play-circle fa-8x"></i></div>
-      <div><i class="bottom-image stop fa fa-stop-circle fa-8x"></i></div>
+     <div><i (click)="pauseMedia()" class="bottom-image pause fa fa-pause-circle fa-8x"></i></div>
+      <div><i (click)="playMedia()" class="bottom-image play fa fa-play-circle fa-8x"></i></div>
+      <div><i (click)="stopMedia()" class="bottom-image stop fa fa-stop-circle fa-8x"></i></div>
     </div>
   </div>
 </div>

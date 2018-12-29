@@ -73,6 +73,36 @@ export class GlobalService {
     return this.http.post(url, this.activePlayList);
   }
 
+  public next() {
+    const url = this.auth.node_url_1 + '/playlist/next';
+    return this.http.get(url);
+  }
+
+  public prev() {
+    const url = this.auth.node_url_1 + '/playlist/prev';
+    return this.http.get(url);
+  }
+
+  public play() {
+    const url = this.auth.node_url_1 + '/playlist/play';
+    return this.http.get(url);
+  }
+
+  public pause() {
+    const url = this.auth.node_url_1 + '/playlist/pause';
+    return this.http.get(url);
+  }
+
+  public stop() {
+    const url = this.auth.node_url_1 + '/playlist/stop';
+    return this.http.get(url);
+  }
+
+  public createTemporaryPlaylist(selectedFiles) {
+    const url = this.auth.node_url_1 + '/playlist/createTemp';
+    return this.http.post(url, selectedFiles);
+  }
+
   public getAlbums() {
     const url = this.auth.node_url_1 + '/albums';
     return this.http.get(url);
