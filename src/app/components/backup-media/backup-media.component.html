@@ -13,10 +13,13 @@
           <div class="input-simple-2 textarea has-icon">
             A: <!--<input type="text" class="textarea-simple-2" readonly ng-model="backup_src"-->
             <!--placeholder="Source">-->
-            <select class="textarea-simple-2" [(ngModel)]="backupSrc">
-              <option value="" disabled selected>Select source</option>
-              <option *ngFor="let item of available_devices" value="{{item.diskPath}}">{{item.description}}</option>
-            </select>
+            <mat-form-field>
+              <mat-select placeholder="Select source" [(value)]="backupSrc">
+                <mat-option *ngFor="let item of available_devices" [value]="item.diskPath">
+                  {{item.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
         </li>
@@ -28,10 +31,13 @@
 
             B: <!--<input type="text" class="textarea-simple-2" readonly ng-model="backup_dest"-->
             <!--placeholder="Destination">-->
-            <select class="textarea-simple-2" [(ngModel)]="backupDesc">
-              <option value="" disabled selected>Select destination</option>
-              <option *ngFor="let item of available_devices" value="{{item.diskPath}}">{{item.description}}</option>
-            </select>
+            <mat-form-field>
+              <mat-select placeholder="Select destination" [(value)]="backupDesc">
+                <mat-option *ngFor="let item of available_devices" [value]="item.diskPath">
+                  {{item.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
         </li>
@@ -40,24 +46,17 @@
         <p>{{backup_message}}</p>
         <li>
 
-          <button class="button-full button uppercase  button-purple" (click)="getDeviceList()">Refresh
-            List
-          </button>
-
-
+          <button (click)="getDeviceList()" mat-raised-button color="primary" class="button-footer button-purple">Refresh</button>
         </li>
       </ul>
     </div>
     <span *ngIf="available">
     <p class="bottom-20">
-      <button (click)="startbackup('ab')"
-         class="button button-full button-green-3d button-green uppercase ultrabold">Copy A to B </button>
-
+        <button (click)="startbackup('ab')" mat-raised-button color="primary" class="button-footer button-green">Copy A to B</button>
     </p>
 
     <p class="bottom-20">
-      <button (click)="startbackup('ba')"
-         class="button button-full button-green-3d button-green uppercase ultrabold">Copy B to A</button>
+      <button (click)="startbackup('ba')" mat-raised-button color="primary" class="button-footer button-green">Copy B to A</button>
 
     </p>
       </span>

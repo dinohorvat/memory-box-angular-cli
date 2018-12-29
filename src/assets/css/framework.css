@@ -1608,12 +1608,12 @@ input[type="range"]::-webkit-slider-thumb:after{
 .button-white:hover{background-color:rgba(255,255,255,0.8); border:solid 2px #FFFFFF;}
 .button-white:active{background-color:#FFFFFF; border-bottom:solid 2px #FFFFFF!important;}
 
-.button-green{background-color:#6AC431; border:solid 2px #6AC431;}
+.button-green{background-color:#6AC431 !important; border:solid 2px #6AC431 !important;}
 .button-green-3d{border:none!important; border-bottom:solid 5px #77a346!important; padding:0px 22px;}
 .button-green:hover{background-color:#A0D468; border:solid 2px #A0D468;}
 .button-green:active{background-color:#77a346; border:solid 2px #77a346;}
 
-.button-blue{background-color:#4A89DC; border:solid 2px #4A89DC;}
+.button-blue{background-color:#4A89DC !important; border:solid 2px #4A89DC !important;}
 .button-blue-3d{border:none!important; border-bottom:solid 5px #3a71b9!important; padding:0px 22px;}
 .button-blue:hover{background-color:#5D9CEC; border:solid 2px #5D9CEC;}
 .button-blue:active{background-color:#3a71b9; border:solid 2px #3a71b9;}
@@ -1654,13 +1654,13 @@ input[type="range"]::-webkit-slider-thumb:after{
 .button-orange:active{background-color:#c6442f; border:solid 2px #c6442f;}
 
 
-.button-purple{background-color:#6E028D; border:solid 2px #6E028D;}
+.button-purple{background-color:#6E028D !important; border:solid 2px #6E028D !important; border-radius: 10px;}
 .button-purple-3d{border:none!important; border-bottom:solid 5px #6E028D!important; padding:0px 22px;}
 .button-purple:hover{background-color:#6E028D; border:solid 2px #6E028D;}
 .button-purple:active{background-color:#6E028D; border:solid 2px #6E028D;}
 
 
-.button-red{background-color:#ED3A3E; border:solid 2px #ED3A3E;}
+.button-red{background-color:#ED3A3E !important; border:solid 2px #ED3A3E !important;}
 .button-red-3d{border:none!important; border-bottom:solid 5px #BF263C!important; padding:0px 22px;}
 .button-red:hover{background-color:#DA4453; border:solid 2px #DA4453;}
 .button-red:active{background-color:#BF263C; border:solid 2px #BF263C;}

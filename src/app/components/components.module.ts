@@ -18,7 +18,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule,
+  MatMenuModule, MatOptionModule, MatSelectModule,
   MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -52,6 +52,8 @@ import {PinPageComponent} from './login/pin-page/pin-page.component';
     MatIconModule,
     MatGridListModule,
     MatMenuModule,
+    MatSelectModule,
+    MatOptionModule,
     BrowserAnimationsModule,
     MatDialogModule,
     MatInputModule,

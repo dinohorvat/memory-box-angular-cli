@@ -20,37 +20,42 @@
   </mat-card>
 </div>
 <div class="footer-custom">
-    <div class="top-25 bottom-15">
-      <p class="bottom-20">
-        <div class="one-third">
+  <button (click)="playSelected()" mat-raised-button color="primary" class="button-green">Play</button>
+  <button (click)="deleteSelected()" mat-raised-button color="primary" class="button-red">Delete</button>
+  <button (click)="createAlbum()" mat-raised-button color="primary" class="button-blue">Create Album</button>
+
+  <!--<div class="top-25 bottom-15">-->
+      <!--<p class="bottom-20">-->
+        <!--<div class="one-third">-->
 
 
-      <p class="bottom-0">
+      <!--<p class="bottom-0">-->
+      <!--<button (click)="playSelected()" mat-raised-button color="primary" class="button-green">Play</button>-->
+        <!--&lt;!&ndash;<button (click)="playSelected()" class="button button-green">Play</button>&ndash;&gt;-->
 
-        <button (click)="playSelected()" class="button button-green">Play</button>
-
-      </p>
-    </div>
-    <div class="one-third">
-
-
-      <p class="bottom-0">
-        <!-- TODO: Add Confirmation -->
-        <button (click)="deleteSelected()" class="button button-red">Delete</button>
-
-      </p>
-    </div>
+      <!--</p>-->
+    <!--</div>-->
+    <!--<div class="one-third">-->
 
 
-    <div class="one-third last-column">
+      <!--<p class="bottom-0">-->
+        <!--&lt;!&ndash; TODO: Add Confirmation &ndash;&gt;-->
+        <!--<button (click)="deleteSelected()" mat-raised-button color="primary" class="button-red">Delete</button>-->
+        <!--&lt;!&ndash;<button (click)="deleteSelected()" class="button button-red">Delete</button>&ndash;&gt;-->
+
+      <!--</p>-->
+    <!--</div>-->
 
 
-      <p class="bottom-0">
+    <!--<div class="one-third last-column">-->
 
-        <button (click)="createAlbum()" class="button button-blue">Create Album</button>
 
-      </p>
-    </div>
+      <!--<p class="bottom-0">-->
+        <!--<button (click)="createAlbum()" mat-raised-button color="primary" class="button-blue">Create Album</button>-->
+        <!--&lt;!&ndash;<button (click)="createAlbum()" class="button button-blue">Create Album</button>&ndash;&gt;-->
+
+      <!--</p>-->
+    <!--</div>-->
 
   </div>
 
