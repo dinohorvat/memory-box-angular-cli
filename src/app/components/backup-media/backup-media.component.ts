@@ -15,6 +15,8 @@ export class BackupMediaComponent implements OnInit {
   backupDesc;
   backupSrc;
   available = false;
+  startName = 'Start Backup';
+  zipping = false;
   constructor(private globalService: GlobalService, private router: Router,
               private fileService: FileService) {}
 
@@ -32,6 +34,26 @@ export class BackupMediaComponent implements OnInit {
       } else {
         this.available = false;
       }
+    });
+  }
+
+  startBackup() {
+    this.zipping = true;
+    this.startName = 'Backing up the media...';
+    this.globalService.getMedia({specific: true, mediaPath: this.backupSrc}).subscribe((res) => {
+      const media = res;
+      console.log(media);
+      const data = {
+        dest: this.backupDesc,
+        source: this.backupSrc,
+        media: media
+      };
+      this.globalService.backupMedia(data).subscribe((_res) => {
+        console.log(_res);
+        this.zipping = false;
+        this.startName = 'Start Backup';
+        alert('Media Backup finished');
+      });
     });
   }
 

@@ -45,19 +45,15 @@
 
         <p>{{backup_message}}</p>
         <li>
-
           <button (click)="getDeviceList()" mat-raised-button color="primary" class="button-footer button-purple">Refresh</button>
         </li>
       </ul>
     </div>
     <span *ngIf="available">
     <p class="bottom-20">
-        <button (click)="startbackup('ab')" mat-raised-button color="primary" class="button-footer button-green">Copy A to B</button>
-    </p>
-
-    <p class="bottom-20">
-      <button (click)="startbackup('ba')" mat-raised-button color="primary" class="button-footer button-green">Copy B to A</button>
-
+         <mat-progress-bar *ngIf="zipping" mode="indeterminate"></mat-progress-bar>
+        <button [disabled]="zipping" (click)="startBackup()" mat-raised-button color="primary" class="button-footer button-green">{{startName}}</button>
+         <mat-progress-bar *ngIf="zipping" mode="indeterminate"></mat-progress-bar>
     </p>
       </span>
     <span *ngIf="!available">

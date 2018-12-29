@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {FileElement} from '../components/file-explorer/model/element';
 import {BehaviorSubject} from 'rxjs';
+import {isNullOrUndefined} from 'util';
 
 @Injectable()
 export class GlobalService {
@@ -58,14 +59,13 @@ export class GlobalService {
   /**
    * @Media API Calls
    */
-  public createAlbum(albumName, selectedFiles) {
-    const url = this.auth.node_url_1 + '/albums/createAlbum/' + albumName;
-    return this.http.post(url, selectedFiles);
-  }
 
-  public getMedia() {
+  public getMedia(data?) {
+    if (isNullOrUndefined(data)) {
+      data = {specific: false};
+    }
     const url = this.auth.node_url_1 + '/media/files';
-    return this.http.get(url);
+    return this.http.post(url, data);
   }
 
   public playMedia() {
@@ -78,6 +78,16 @@ export class GlobalService {
     return this.http.get(url);
   }
 
+  public getAlbum(name) {
+    const url = this.auth.node_url_1 + '/albums/album/' + name;
+    return this.http.get(url);
+  }
+
+  public createAlbum(name, selectedFiles) {
+    const url = this.auth.node_url_1 + '/albums/createAlbum/' + name;
+    return this.http.post(url, selectedFiles);
+  }
+
   public deleteAlbum(name) {
     const url = this.auth.node_url_1 + '/albums/deleteAlbum?name=' + name;
     return this.http.post(url, {});
@@ -86,6 +96,12 @@ export class GlobalService {
   public downloadMedia(file) {
     const url = this.auth.node_url_1 + '/media/download';
     return this.http.post(url, file, {responseType: 'blob', observe: 'response'});
+  }
+
+
+  public backupMedia(data) {
+    const url = this.auth.node_url_1 + '/media/backup';
+    return this.http.post(url, data);
   }
 
   public uploadMedia(file) {
