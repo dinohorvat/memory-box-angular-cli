@@ -1,0 +1,7 @@
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large bg-white-transparent">
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+</div>
+</div>
+</div>

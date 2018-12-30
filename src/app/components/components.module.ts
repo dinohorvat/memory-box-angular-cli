@@ -26,6 +26,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {DeviceSelectComponent} from './login/device-select/device-select.component';
 import {PinPageComponent} from './login/pin-page/pin-page.component';
+import {PlaylistOrderComponent} from './playlist-order/playlist-order.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -39,10 +41,12 @@ import {PinPageComponent} from './login/pin-page/pin-page.component';
     LoginComponent,
     MediaManagerComponent,
     PlayingNowComponent,
+    PlaylistOrderComponent,
     PinPageComponent
   ],
   imports: [
     BrowserModule,
+    DragDropModule,
     FileExplorerModule,
     RouterModule,
     CommonModule,

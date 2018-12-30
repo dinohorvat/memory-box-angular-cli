@@ -14,6 +14,7 @@ import {DeviceSelectComponent} from './components/login/device-select/device-sel
 import {PinPageComponent} from './components/login/pin-page/pin-page.component';
 import {AuthGuard} from './services/auth.guard';
 import {PinGuard} from './services/pin.guard';
+import {PlaylistOrderComponent} from './components/playlist-order/playlist-order.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,7 @@ const routes: Routes = [
           {path: 'import', component: ImportMediaComponent, canActivate: [AuthGuard]},
           {path: 'media', component: MediaManagerComponent, canActivate: [AuthGuard]},
           {path: 'playing', component: PlayingNowComponent, canActivate: [AuthGuard]},
+          {path: 'playlistOrder', component: PlaylistOrderComponent, canActivate: [AuthGuard]},
           {path: 'pin', component: PinPageComponent, canActivate: [PinGuard]},
         ]
     }
