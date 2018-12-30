@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { MatDialog } from '@angular/material/dialog';
 import { NewFolderDialogComponent } from './modals/newFolderDialog/newFolderDialog.component';
 import { RenameDialogComponent } from './modals/renameDialog/renameDialog.component';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-file-explorer',
@@ -12,11 +13,14 @@ import { RenameDialogComponent } from './modals/renameDialog/renameDialog.compon
   styleUrls: ['./file-explorer.component.css']
 })
 export class FileExplorerComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public auth?: AuthService) {
+    this.thumbnailRootPath = this.auth.node_url_1;
+  }
 
+  thumbnailRootPath = '';
   @Input() fileElements: FileElement[];
   @Input() canNavigateUp: string;
-  @Input() canRefresh: boolean;
+  @Input() canRefresh: boolean; // Also used if user is coming from Album or opening normal Media Manager
   @Input() path: string;
   @Input() name: string;
 

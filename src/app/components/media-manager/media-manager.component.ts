@@ -22,6 +22,7 @@ export class MediaManagerComponent implements OnInit {
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
+  addAlbum = false; // If adding new items to existing album
   canRefresh = true; // Also used to distinguish if the Media Manager is in Album view (Triggered from Album)
 
   ngOnInit() {
@@ -29,8 +30,13 @@ export class MediaManagerComponent implements OnInit {
     this._route.queryParams.subscribe((params) => {
       if (!params.album) {
         this.getMediaFiles();
+        if (params.addAlbum) {
+          this.mediaManagerName = params.albumName;
+          this.addAlbum = true;
+        }
         console.log('fileServiceMap:', this.fileService.map);
         console.log('globalService:', this.globalService.mediaFileTree);
+        this.canRefresh = true;
       } else {
         this.canRefresh = false;
         this.mediaManagerName = params.albumName;
@@ -74,6 +80,13 @@ export class MediaManagerComponent implements OnInit {
     } else {
       this.playAlbumItems(selectedItems);
     }
+  }
+
+  addToAlbum() {
+    if (this.canRefresh) {
+        this.createAlbum();
+    }
+    this.router.navigate(['/main/media'], {queryParams: {addAlbum: true, albumName: this.mediaManagerName}});
   }
 
   playAlbumItems(selectedItems) {
@@ -130,14 +143,24 @@ export class MediaManagerComponent implements OnInit {
       alert('Please select media to add in album');
       return;
     }
-    const albumName = prompt('Please enter new album name');
+    let albumName;
+    if (!this.addAlbum) {
+      albumName = prompt('Please enter new album name');
+    }
+    if (this.addAlbum) {
+      albumName = this.mediaManagerName;
+    }
 
     if (isNullOrUndefined(albumName)) {
       return;
     }
     this.globalService.createAlbum(albumName, selectedItems).subscribe((res) => {
       console.log(res);
-      alert('Album Created');
+      if (this.addAlbum) {
+        alert('Added to the album');
+      } else {
+        alert('Album Created');
+      }
     });
   }
 

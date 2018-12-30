@@ -22,7 +22,8 @@
 <div class="footer-custom">
   <button (click)="playSelected()" mat-raised-button color="primary" class="button-green">Play</button>
   <button (click)="deleteSelected()" mat-raised-button color="primary" class="button-red">Delete</button>
-  <button (click)="createAlbum()" mat-raised-button color="primary" class="button-blue">Create Album</button>
+  <button *ngIf="canRefresh && !addAlbum" (click)="createAlbum()" mat-raised-button color="primary" class="button-blue">Create Album</button>
+  <button *ngIf="!canRefresh || addAlbum" (click)="addToAlbum()" mat-raised-button color="primary" class="button-blue">Add</button>
 
   <!--<div class="top-25 bottom-15">-->
       <!--<p class="bottom-20">-->

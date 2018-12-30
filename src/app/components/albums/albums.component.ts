@@ -3,6 +3,7 @@ import {GlobalService} from '../../services/global.service';
 import {Router} from '@angular/router';
 import {FileElement} from '../file-explorer/model/element';
 import {FileService} from '../../services/file.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-albums',
@@ -36,6 +37,7 @@ export class AlbumsComponent implements OnInit {
         name: item.name,
         parent: 'root',
         path: item.path,
+        thumbnail: item.path.substring('/home/pi/jp/SmartPlay/express-server/assets'.length),
         selected: false
       };
       this.fileService.add(_item);
