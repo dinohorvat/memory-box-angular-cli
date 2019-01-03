@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { RenameDialogComponent } from './modals/renameDialog/renameDialog.component';
 import { FileExplorerComponent } from './file-explorer.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { FileExplorerComponent } from './file-explorer.component';
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    DragDropModule,
     MatButtonModule
   ],
   declarations: [FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent],

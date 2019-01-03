@@ -9,6 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class RenameDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<RenameDialogComponent>) {}
   currentName: string;
+  filePath: string;
   folderName: string;
 
   ngOnInit() {}

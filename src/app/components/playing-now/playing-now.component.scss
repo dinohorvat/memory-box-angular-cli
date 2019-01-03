@@ -39,3 +39,53 @@ i {
     color: rgb(237, 58, 62);
   }
 }
+
+.remote-control {
+  margin-top: 80px;
+  width: auto;
+  height: 80vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+.img-container {
+  div {
+    position: absolute;
+    opacity: 0;
+    z-index: 1000;
+    font-size: 10px;
+    line-height: 18px;
+    background-color: red;
+    color: white;
+  }
+  display: inline-block;
+  position: relative;
+}
+.next-button {
+  right: 35px;
+  bottom: 450px;
+  padding: 4px 15px;
+}
+
+.prev-button {
+  right: 138px;
+  bottom: 450px;
+  padding: 4px 15px;
+}
+
+.stop-button {
+  right: 81px;
+  bottom: 73px;
+  padding: 4px 15px;
+}
+
+.play-button {
+  right: 81px;
+  bottom: 330px;
+  padding: 4px 15px;
+}
+
+.pause-button {
+  right: 81px;
+  bottom: 201px;
+  padding: 4px 15px;
+}

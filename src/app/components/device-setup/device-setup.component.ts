@@ -47,7 +47,7 @@ export class DeviceSetupComponent implements OnInit {
   saveDeviceName() {
     this.globalService.setDeviceName(this.deviceName).subscribe((res: any) => {
       if (res.success) {
-        this.storage.setItem(this.auth.current_mac, this.deviceName);
+        this.storage.setItem(this.deviceName, this.auth.current_mac);
         alert('Device Name Changed!');
       }
     });

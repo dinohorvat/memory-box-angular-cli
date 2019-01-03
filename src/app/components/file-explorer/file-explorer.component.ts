@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewFolderDialogComponent } from './modals/newFolderDialog/newFolderDialog.component';
 import { RenameDialogComponent } from './modals/renameDialog/renameDialog.component';
 import {AuthService} from '../../services/auth.service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-file-explorer',
@@ -33,6 +34,25 @@ export class FileExplorerComponent {
   @Output() navigatedDown = new EventEmitter<FileElement>();
   @Output() navigatedUp = new EventEmitter();
   @Output() refreshFiles = new EventEmitter();
+
+  movies = [
+    'Episode I - The Phantom Menace',
+    'Episode II - Attack of the Clones',
+    'Episode III - Revenge of the Sith',
+    'Episode IV - A New Hope',
+    'Episode V - The Empire Strikes Back',
+    'Episode VI - Return of the Jedi',
+    'Episode VII - The Force Awakens',
+    'Episode VIII - The Last Jedi'
+  ];
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  }
+
+  dropEvent(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.fileElements, event.previousIndex, event.currentIndex);
+  }
 
   selectElement(element: FileElement) {
     element.selected = !element.selected;
@@ -74,10 +94,15 @@ export class FileExplorerComponent {
   }
 
   openRenameDialog(element: FileElement) {
+    console.log(element);
     const dialogRef = this.dialog.open(RenameDialogComponent);
     dialogRef.componentInstance.currentName = element.name;
+    let path_ = element.path;
+    path_ = path_.substr(0, path_.lastIndexOf('/'));
+    dialogRef.componentInstance.filePath = element.path;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
+        console.log(res);
         element.name = res;
         this.elementRenamed.emit(element);
       }

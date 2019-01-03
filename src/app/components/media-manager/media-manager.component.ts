@@ -95,6 +95,9 @@ export class MediaManagerComponent implements OnInit {
         path: item.path.substring('/home/pi/jp/SmartPlay/express-server/assets'.length),
         type: 'photo'
       };
+      if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {
+        _item.type = 'video';
+      }
       return _item;
     });
     console.log(_tempPlayList);
@@ -112,6 +115,9 @@ export class MediaManagerComponent implements OnInit {
         path: '/data/tempPlaylist/' + item.name,
         type: 'photo'
       };
+      if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {
+        _item.type = 'video';
+      }
       return _item;
     });
     console.log(_tempPlayList);
@@ -154,12 +160,16 @@ export class MediaManagerComponent implements OnInit {
     if (isNullOrUndefined(albumName)) {
       return;
     }
-    this.globalService.createAlbum(albumName, selectedItems).subscribe((res) => {
+    this.globalService.createAlbum(albumName, selectedItems).subscribe((res: any) => {
       console.log(res);
       if (this.addAlbum) {
         alert('Added to the album');
       } else {
-        alert('Album Created');
+        if (res.success) {
+          alert('Album Created');
+        } else {
+          alert('Something went wrong. Please try again later.');
+        }
       }
     });
   }
