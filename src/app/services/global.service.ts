@@ -146,6 +146,11 @@ export class GlobalService {
     const url = this.auth.node_url_1 + '/media/delete';
     return this.http.post(url, selectedFiles);
   }
+
+  public renameFile(file) {
+    const url = this.auth.node_url_1 + '/media/rename';
+    return this.http.post(url, file);
+  }
 }
 
 export interface Usb {

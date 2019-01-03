@@ -7,6 +7,7 @@ import { NewFolderDialogComponent } from './modals/newFolderDialog/newFolderDial
 import { RenameDialogComponent } from './modals/renameDialog/renameDialog.component';
 import {AuthService} from '../../services/auth.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
   selector: 'app-file-explorer',
@@ -14,7 +15,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
   styleUrls: ['./file-explorer.component.css']
 })
 export class FileExplorerComponent {
-  constructor(public dialog: MatDialog, public auth?: AuthService) {
+  constructor(public dialog: MatDialog, public auth?: AuthService, public globalService?: GlobalService) {
     this.thumbnailRootPath = this.auth.node_url_1;
   }
 
@@ -100,11 +101,16 @@ export class FileExplorerComponent {
     let path_ = element.path;
     path_ = path_.substr(0, path_.lastIndexOf('/'));
     dialogRef.componentInstance.filePath = element.path;
+    let newPath = path_ + '/';
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        console.log(res);
-        element.name = res;
-        this.elementRenamed.emit(element);
+        newPath += res;
+        this.globalService.renameFile({oldPath: element.path, newPath: newPath}).subscribe((res_) => {
+          console.log(res_);
+          element.name = res;
+          this.elementRenamed.emit(element);
+        });
+
       }
     });
   }
