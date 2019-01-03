@@ -1,7 +1,21 @@
 <div class="page-content header-clear-larger">
   <div class="content-box shadow-large bg-white-transparent">
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
-</div>
-</div>
+    <div class="image-duration">
+      <mat-form-field class="example-full-width">
+        <input type="number" matInput placeholder="Image duration in seconds" [(ngModel)]="duration">
+      </mat-form-field>
+    </div>
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of playlistItems" cdkDrag>
+        <img *ngIf="item.type === 'photo'" [src]="serverIp + item.path"/>
+        <video *ngIf="item.type === 'video'" width="320" height="240">
+          <source [src]="serverIp + item.path">
+        </video>
+        <div>{{item.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-custom">
+    <button mat-raised-button color="primary" class="button-green">Play</button>
+  </div>
 </div>

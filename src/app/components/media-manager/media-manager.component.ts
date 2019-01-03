@@ -102,10 +102,11 @@ export class MediaManagerComponent implements OnInit {
     });
     console.log(_tempPlayList);
     this.globalService.activePlayList = _tempPlayList;
-    this.globalService.playMedia().subscribe((res: any) => {
-      console.log(res);
-      this.router.navigate(['/main/playing']);
-    });
+    this.router.navigate(['/main/playlistOrder']);
+    // this.globalService.playMedia().subscribe((res: any) => {
+    //   console.log(res);
+    //   this.router.navigate(['/main/playing']);
+    // });
   }
 
   playTempPlayListItems(selectedItems) {
@@ -113,7 +114,8 @@ export class MediaManagerComponent implements OnInit {
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
         path: '/data/tempPlaylist/' + item.name,
-        type: 'photo'
+        type: 'photo',
+        name: item.name
       };
       if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {
         _item.type = 'video';
@@ -122,10 +124,11 @@ export class MediaManagerComponent implements OnInit {
     });
     console.log(_tempPlayList);
     this.globalService.activePlayList = _tempPlayList;
-    this.globalService.playMedia().subscribe((res: any) => {
-      console.log(res);
-      this.router.navigate(['/main/playing']);
-    });
+    this.router.navigate(['/main/playlistOrder']);
+    // this.globalService.playMedia().subscribe((res: any) => {
+    //   console.log(res);
+    //   this.router.navigate(['/main/playing']);
+    // });
   }
 
   deleteSelected() {
