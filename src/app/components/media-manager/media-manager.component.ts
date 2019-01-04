@@ -168,7 +168,6 @@ export class MediaManagerComponent implements OnInit {
     this.globalService.createAlbum(albumName, selectedItems).subscribe((res: any) => {
       console.log(res);
       if (this.addAlbum) {
-        if (this.canRefresh) {
           if (this.storage.getItem(this.mediaManagerName)) {
             const playlistObj: any = JSON.parse(this.storage.getItem(this.mediaManagerName));
             for (const element of selectedItems) {
@@ -177,7 +176,6 @@ export class MediaManagerComponent implements OnInit {
               this.storage.setItem(this.mediaManagerName, JSON.stringify(playlistObj));
               console.log(playlistObj);
             }
-          }
         }
         alert('Added to the album');
       } else {
