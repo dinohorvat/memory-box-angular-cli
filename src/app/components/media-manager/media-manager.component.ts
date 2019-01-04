@@ -102,7 +102,7 @@ export class MediaManagerComponent implements OnInit {
     });
     console.log(_tempPlayList);
     this.globalService.activePlayList = _tempPlayList;
-    this.router.navigate(['/main/playlistOrder']);
+    this.router.navigate(['/main/playlistOrder'], {queryParams: {albumName: this.mediaManagerName}});
     // this.globalService.playMedia().subscribe((res: any) => {
     //   console.log(res);
     //   this.router.navigate(['/main/playing']);

@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {GlobalService} from '../../services/global.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {AuthService} from '../../services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {isNullOrUndefined} from 'util';
+import {LocalStoreService} from '../../services/local-store.service';
 
 @Component({
   selector: 'app-playlist-order',
@@ -12,20 +14,33 @@ import {Router} from '@angular/router';
 
 export class PlaylistOrderComponent implements OnInit {
 
+  albumName;
+
   constructor(public globalService: GlobalService, public authService: AuthService,
-              private router: Router) {
+              private router: Router, public route: ActivatedRoute, public storage: LocalStoreService) {
+    this.route.queryParams.subscribe((params) => {
+        this.albumName = params.albumName;
+    });
   }
   playlistItems = [];
   serverIp;
   duration = 5;
   ngOnInit(): void {
     this.serverIp = this.authService.node_url_1;
-    this.playlistItems = this.getActivePlaylist();
+    if (this.storage.getItem(this.albumName)) {
+      this.playlistItems = JSON.parse(this.storage.getItem(this.albumName));
+    } else {
+      this.playlistItems = this.getActivePlaylist();
+    }
     console.log(this.playlistItems);
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.playlistItems, event.previousIndex, event.currentIndex);
+    console.log(this.playlistItems);
+    if (!isNullOrUndefined(this.albumName)) {
+      this.storage.setItem(this.albumName, JSON.stringify(this.playlistItems));
+    }
   }
 
   getActivePlaylist() {
