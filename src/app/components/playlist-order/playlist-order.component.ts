@@ -15,6 +15,9 @@ import {LocalStoreService} from '../../services/local-store.service';
 export class PlaylistOrderComponent implements OnInit {
 
   albumName;
+  playlistItems = [];
+  serverIp;
+  duration = 5;
 
   constructor(public globalService: GlobalService, public authService: AuthService,
               private router: Router, public route: ActivatedRoute, public storage: LocalStoreService) {
@@ -22,14 +25,10 @@ export class PlaylistOrderComponent implements OnInit {
         this.albumName = params.albumName;
     });
   }
-  playlistItems = [];
-  serverIp;
-  duration = 5;
+
   ngOnInit(): void {
     this.serverIp = this.authService.node_url_1;
-    if (this.storage.getItem(this.albumName)) {
-      this.playlistItems = JSON.parse(this.storage.getItem(this.albumName));
-    } else {
+    if (!this.getAlbumPlaylist()) {
       this.playlistItems = this.getActivePlaylist();
     }
     console.log(this.playlistItems);
@@ -39,7 +38,23 @@ export class PlaylistOrderComponent implements OnInit {
     moveItemInArray(this.playlistItems, event.previousIndex, event.currentIndex);
     console.log(this.playlistItems);
     if (!isNullOrUndefined(this.albumName)) {
-      this.storage.setItem(this.albumName, JSON.stringify(this.playlistItems));
+      const storageAlbum: StorageAlbum = new StorageAlbum(this.playlistItems, this.albumName, this.duration);
+      this.storage.setItem(this.albumName, JSON.stringify(storageAlbum));
+    }
+  }
+
+  /*
+    Get from local storage
+   */
+  getAlbumPlaylist() {
+    if (!this.storage.getItem(this.albumName)) {
+      return false;
+    } else {
+      const storageAlbum: StorageAlbum = JSON.parse(this.storage.getItem(this.albumName));
+      this.playlistItems = storageAlbum.playlist;
+      this.albumName = storageAlbum.albumName;
+      this.duration = storageAlbum.duration;
+      return storageAlbum;
     }
   }
 
@@ -53,5 +68,17 @@ export class PlaylistOrderComponent implements OnInit {
     //   console.log(res);
     //   this.router.navigate(['/main/playing']);
     // });
+  }
+}
+
+export class StorageAlbum {
+  playlist: any;
+  albumName: string;
+  duration: number;
+
+  constructor(playlist_, albumName_, duration_) {
+    this.playlist = playlist_;
+    this.albumName = albumName_;
+    this.duration = duration_;
   }
 }

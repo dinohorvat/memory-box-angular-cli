@@ -5,7 +5,7 @@ import {FileService} from '../../services/file.service';
 import {GlobalService} from '../../services/global.service';
 import {isNullOrUndefined} from 'util';
 import saveAs from 'file-saver';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-media-manager',
