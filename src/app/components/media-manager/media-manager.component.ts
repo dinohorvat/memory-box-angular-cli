@@ -73,6 +73,7 @@ export class MediaManagerComponent implements OnInit {
       alert('Please select media to play');
       return;
     }
+
     // Creating temporary playlist
     if (this.canRefresh) {
       this.globalService.createTemporaryPlaylist(selectedItems).subscribe((res) => {
