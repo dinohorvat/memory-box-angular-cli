@@ -128,6 +128,11 @@ export class GlobalService {
     return this.http.post(url, file, {responseType: 'blob', observe: 'response'});
   }
 
+  public downloadAllMedia(mediaList) {
+    const url = this.auth.node_url_1 + '/media/downloadAll';
+    return this.http.post(url, mediaList, {responseType: 'blob', observe: 'response'});
+  }
+
 
   public backupMedia(data) {
     const url = this.auth.node_url_1 + '/media/backup';

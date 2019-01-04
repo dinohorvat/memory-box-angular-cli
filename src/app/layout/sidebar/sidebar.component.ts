@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
     {name: 'Playing Now', path: '/main/playing', icon: 'fa-play-circle', icon_background_color: '#31A68A'},
     {name: 'Media Manager', path: '/main/media', icon: 'fa-folder', icon_background_color: '#6E028D'},
     {name: 'Import Media', path: '/main/import', icon: 'fa-upload', icon_background_color: '#E9B800'},
-    // {name: 'Export Media', path: '/main/export', icon: 'fa-download', icon_background_color: '#90ABBC'},
+    {name: 'Export Media', path: '/main/export', icon: 'fa-download', icon_background_color: '#90ABBC'},
     {name: 'Albums Media', path: '/main/albums', icon: 'fa-images', icon_background_color: '#F58000'},
     {name: 'Back-up Media', path: '/main/backup', icon: 'fa-database', icon_background_color: '#FC9CB7'},
     {name: 'Device Setup', path: '/main/device', icon: 'fa-cog', icon_background_color: '#0273C3'},
