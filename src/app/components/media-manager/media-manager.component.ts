@@ -5,7 +5,9 @@ import {FileService} from '../../services/file.service';
 import {GlobalService} from '../../services/global.service';
 import {isNullOrUndefined} from 'util';
 import saveAs from 'file-saver';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LocalStoreService} from '../../services/local-store.service';
+import {StorageAlbum} from '../playlist-order/playlist-order.component';
 
 @Component({
   selector: 'app-media-manager',
@@ -17,13 +19,13 @@ export class MediaManagerComponent implements OnInit {
   public fileElements: Observable<FileElement[]>;
   public mediaManagerName = 'Media Manager';
   constructor(public fileService: FileService, public globalService: GlobalService,
-              public router: Router, public _route: ActivatedRoute) {}
+              public router: Router, public _route: ActivatedRoute, public storage: LocalStoreService) {}
 
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
   addAlbum = false; // If adding new items to existing album
-  canRefresh = true; // Also used to distinguish if the Media Manager is in Album view (Triggered from Album)
+  canRefresh = true; // Also used to distinguish if the Media Manager is in Album view (Triggered from Album) -- false means its Album
 
   ngOnInit() {
     // If it's not a call from Album --- Load media from API
@@ -71,6 +73,7 @@ export class MediaManagerComponent implements OnInit {
       alert('Please select media to play');
       return;
     }
+
     // Creating temporary playlist
     if (this.canRefresh) {
       this.globalService.createTemporaryPlaylist(selectedItems).subscribe((res) => {
@@ -102,7 +105,7 @@ export class MediaManagerComponent implements OnInit {
     });
     console.log(_tempPlayList);
     this.globalService.activePlayList = _tempPlayList;
-    this.router.navigate(['/main/playlistOrder']);
+    this.router.navigate(['/main/playlistOrder'], {queryParams: {albumName: this.mediaManagerName}});
     // this.globalService.playMedia().subscribe((res: any) => {
     //   console.log(res);
     //   this.router.navigate(['/main/playing']);
@@ -166,6 +169,15 @@ export class MediaManagerComponent implements OnInit {
     this.globalService.createAlbum(albumName, selectedItems).subscribe((res: any) => {
       console.log(res);
       if (this.addAlbum) {
+          if (this.storage.getItem(this.mediaManagerName)) {
+            const playlistObj: any = JSON.parse(this.storage.getItem(this.mediaManagerName));
+            for (const element of selectedItems) {
+              console.log(element);
+              playlistObj.playlist.push(element);
+              this.storage.setItem(this.mediaManagerName, JSON.stringify(playlistObj));
+              console.log(playlistObj);
+            }
+        }
         alert('Added to the album');
       } else {
         if (res.success) {
@@ -189,6 +201,18 @@ export class MediaManagerComponent implements OnInit {
 
   removeElement(element: FileElement, redButton) {
     // Red Button --> if request is coming from a click in footer
+    if (this.canRefresh) {
+      if (this.storage.getItem(this.mediaManagerName)) {
+        const playlistObj: any = JSON.parse(this.storage.getItem(this.mediaManagerName));
+        console.log(element);
+        playlistObj.playlist = playlistObj.playlist.filter(( obj ) => {
+          return obj.path !== element.path;
+        });
+        this.storage.setItem(this.mediaManagerName, JSON.stringify(playlistObj));
+        console.log(playlistObj);
+        // TODO: Finish it
+      }
+    }
     if (redButton) {
       this.fileService.delete(element.id);
       this.updateFileElementQuery();
