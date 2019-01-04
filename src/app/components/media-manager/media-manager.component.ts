@@ -52,6 +52,11 @@ export class MediaManagerComponent implements OnInit {
       console.log('media', res);
       this.fileService.map = new Map<string, FileElement>();
       for (const file of res) {
+        if (file.name.endsWith('.avi') || file.name.endsWith('.mov') || file.name.endsWith('.mp4')) {
+          file.type = 'video';
+        } else {
+          file.type = 'photo';
+        }
         this.fileService.add(file);
       }
       this.updateFileElementQuery();
@@ -95,7 +100,7 @@ export class MediaManagerComponent implements OnInit {
   playAlbumItems(selectedItems) {
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
-        path: item.path.substring('/home/pi/jp/SmartPlay/express-server/assets'.length),
+        path: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
         type: 'photo'
       };
       if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {

@@ -44,7 +44,7 @@
   background: #0f95dd;
 }
 .image-selected {
-  opacity: 0.6;
+  opacity: 0.6 !important;
 }
 .header-logo-app .header-logo {
   background-position: center center !important;

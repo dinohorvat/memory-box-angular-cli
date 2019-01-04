@@ -37,9 +37,10 @@ export class AlbumsComponent implements OnInit {
         name: item.name,
         parent: 'root',
         path: item.path,
-        thumbnail: item.path.substring('/home/pi/jp/SmartPlay/express-server/assets'.length),
+        thumbnail: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
         selected: false
       };
+      console.log(_item);
       this.fileService.add(_item);
       return _item;
     });

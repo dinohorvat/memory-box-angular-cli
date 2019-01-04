@@ -12,10 +12,16 @@
         <span [matMenuTriggerFor]="rootMenu" [matMenuTriggerData]="{element: element}" #menuTrigger="matMenuTrigger"></span>
         <div fxLayout="column" fxLayoutAlign="space-between center" (click)="navigate(element); selectElement(element)" (contextmenu)="openMenu($event, menuTrigger)">
           <!--<mat-icon color="primary" class="file-or-folder-icon pointer" *ngIf="element.isFolder">folder</mat-icon>-->
-          <mat-icon [ngClass]="{'item-selected': element.selected === true}" color="primary" class="file-or-folder-icon pointer" *ngIf="!element.isFolder && canRefresh">insert_drive_file</mat-icon>
+          <!--<mat-icon [ngClass]="{'item-selected': element.selected === true}" color="primary" class="file-or-folder-icon pointer" *ngIf="!element.isFolder && canRefresh">insert_drive_file</mat-icon>-->
+          <div *ngIf="canRefresh" [ngClass]="{'item-selected': element.selected === true}">
+          <img [src]="mediaUrl + element.path.substring('/media/pi/'.length)" [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;" *ngIf="!element.isFolder && (element.type === 'photo')"/>
+            <video [ngClass]="{'image-selected': element.selected === true}" *ngIf="!element.isFolder && canRefresh && (element.type === 'video')" width="50px" height="auto">
+              <source [src]="mediaUrl + element.path.substring('/media/pi/'.length)">
+            </video>
+          </div>
           <!--<img [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;" *ngIf="canRefresh" [src]="thumbnailRootPath + '/data/thumbs/' + element.name"/>-->
-          <div [ngClass]="{'item-selected': element.selected === true}">
-            <img [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;" *ngIf="!canRefresh" [src]="thumbnailRootPath + element.thumbnail"/>
+          <div *ngIf="!canRefresh" [ngClass]="{'item-selected': element.selected === true}">
+            <img [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;"  [src]="thumbnailRootPath + element.thumbnail"/>
           </div>
           <span class="item-name">{{ (element.name.length > 6)? (element.name | slice:0:6) + '...' +
             (element.name | slice:element.name.length-8:element.name.length):(element.name)}}</span>

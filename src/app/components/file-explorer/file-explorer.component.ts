@@ -17,9 +17,11 @@ import {GlobalService} from '../../services/global.service';
 export class FileExplorerComponent {
   constructor(public dialog: MatDialog, public auth?: AuthService, public globalService?: GlobalService) {
     this.thumbnailRootPath = this.auth.node_url_1;
+    this.mediaUrl = this.auth.media_url;
   }
 
   thumbnailRootPath = '';
+  mediaUrl = '';
   @Input() fileElements: FileElement[];
   @Input() canNavigateUp: string;
   @Input() canRefresh: boolean; // Also used if user is coming from Album or opening normal Media Manager
