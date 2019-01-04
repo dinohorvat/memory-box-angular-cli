@@ -28,6 +28,7 @@ export class PlaylistOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.serverIp = this.authService.node_url_1;
+    // If the order doesn't exist in storage, get the playlist from service as it is
     if (!this.getAlbumPlaylist()) {
       this.playlistItems = this.getActivePlaylist();
     }
@@ -36,7 +37,7 @@ export class PlaylistOrderComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.playlistItems, event.previousIndex, event.currentIndex);
-    console.log(this.playlistItems);
+    // If it's album, save the order in storage
     if (!isNullOrUndefined(this.albumName)) {
       const storageAlbum: StorageAlbum = new StorageAlbum(this.playlistItems, this.albumName, this.duration);
       this.storage.setItem(this.albumName, JSON.stringify(storageAlbum));
