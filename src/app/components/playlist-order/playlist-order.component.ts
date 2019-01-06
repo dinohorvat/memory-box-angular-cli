@@ -51,7 +51,7 @@ export class PlaylistOrderComponent implements OnInit {
     if (!this.storage.getItem(this.albumName)) {
       return false;
     } else {
-      const storageAlbum: StorageAlbum = JSON.parse(this.storage.getItem(this.albumName));
+      const storageAlbum: StorageAlbum = this.storage.getItem(this.albumName);
       this.playlistItems = storageAlbum.playlist;
       this.albumName = storageAlbum.albumName;
       this.duration = storageAlbum.duration;
@@ -64,11 +64,9 @@ export class PlaylistOrderComponent implements OnInit {
   }
 
   play() {
-    this.router.navigate(['/main/playing']);
-    // this.globalService.playMedia().subscribe((res: any) => {
-    //   console.log(res);
-    //   this.router.navigate(['/main/playing']);
-    // });
+    this.globalService.playMedia().subscribe((res_: any) => {
+      this.router.navigate(['/main/playing']);
+    });
   }
 }
 

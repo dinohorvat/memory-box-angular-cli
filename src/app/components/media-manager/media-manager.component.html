@@ -20,7 +20,8 @@
   </mat-card>
 </div>
 <div class="footer-custom">
-  <button (click)="playSelected()" mat-raised-button color="primary" class="button-green">Play</button>
+  <button *ngIf="!canRefresh || addAlbum" (click)="playSelected()" mat-raised-button color="primary" class="button-green">Play Album</button>
+  <button *ngIf="canRefresh && !addAlbum" (click)="playSelected()" mat-raised-button color="primary" class="button-green">Play</button>
   <button (click)="deleteSelected()" mat-raised-button color="primary" class="button-red">Delete</button>
   <button *ngIf="canRefresh && !addAlbum" (click)="createAlbum()" mat-raised-button color="primary" class="button-blue">Create Album</button>
   <button *ngIf="!canRefresh || addAlbum" (click)="addToAlbum()" mat-raised-button color="primary" class="button-blue">Add</button>

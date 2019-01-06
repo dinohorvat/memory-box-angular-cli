@@ -69,32 +69,32 @@ export class GlobalService {
   }
 
   public playMedia() {
-    const url = this.auth.node_url_1 + '/playlist';
+    const url = this.auth.vlc_url + '/playlist';
     return this.http.post(url, this.activePlayList);
   }
 
   public nextMedia() {
-    const url = this.auth.node_url_1 + '/playlist/next';
+    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_next';
     return this.http.get(url);
   }
 
   public prevMedia() {
-    const url = this.auth.node_url_1 + '/playlist/prev';
+    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_previous';
     return this.http.get(url);
   }
 
   public play() {
-    const url = this.auth.node_url_1 + '/playlist/play';
+    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_play';
     return this.http.get(url);
   }
 
   public pauseMedia() {
-    const url = this.auth.node_url_1 + '/playlist/pause';
+    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_pause';
     return this.http.get(url);
   }
 
   public stopMedia() {
-    const url = this.auth.node_url_1 + '/playlist/stop';
+    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_stop';
     return this.http.get(url);
   }
 

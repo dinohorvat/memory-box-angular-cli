@@ -74,7 +74,7 @@ export class MediaManagerComponent implements OnInit {
   playSelected() {
     const selectedItems = Array.from(this.fileService.map.values()).
     filter((item: FileElement) => item.selected === true);
-    if (selectedItems.length === 0) {
+    if ((selectedItems.length === 0 && this.canRefresh)) {
       alert('Please select media to play');
       return;
     }
@@ -83,10 +83,13 @@ export class MediaManagerComponent implements OnInit {
     if (this.canRefresh) {
       this.globalService.createTemporaryPlaylist(selectedItems).subscribe((res) => {
         console.log(res);
-        this.playTempPlayListItems(selectedItems);
+        this.globalService.stopMedia().subscribe((res_) => {
+          console.log(res_);
+          this.playTempPlayListItems(selectedItems);
+        });
       });
     } else {
-      this.playAlbumItems(selectedItems);
+      this.playAlbumItems(Array.from(this.fileService.map.values()));
     }
   }
 
@@ -175,7 +178,7 @@ export class MediaManagerComponent implements OnInit {
       console.log(res);
       if (this.addAlbum) {
           if (this.storage.getItem(this.mediaManagerName)) {
-            const playlistObj: any = JSON.parse(this.storage.getItem(this.mediaManagerName));
+            const playlistObj: any = this.storage.getItem(this.mediaManagerName);
             for (const element of selectedItems) {
               console.log(element);
               playlistObj.playlist.push(element);
@@ -208,7 +211,7 @@ export class MediaManagerComponent implements OnInit {
     // Red Button --> if request is coming from a click in footer
     if (this.canRefresh) {
       if (this.storage.getItem(this.mediaManagerName)) {
-        const playlistObj: any = JSON.parse(this.storage.getItem(this.mediaManagerName));
+        const playlistObj: any = this.storage.getItem(this.mediaManagerName);
         console.log(element);
         playlistObj.playlist = playlistObj.playlist.filter(( obj ) => {
           return obj.path !== element.path;

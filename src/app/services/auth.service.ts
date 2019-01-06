@@ -14,6 +14,7 @@ export class AuthService {
   current_pi_ip;
   current_mac;
   node_url_1;
+  vlc_url;
   piweb_url_1;
   media_url;
   autowifi_url = 'http://67.227.156.25/memorybox/write.php';
