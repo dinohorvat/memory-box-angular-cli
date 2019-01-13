@@ -101,6 +101,7 @@ export class MediaManagerComponent implements OnInit {
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
         path: item.path,
+        thumbPath: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
         type: 'photo'
       };
       if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {
@@ -121,7 +122,8 @@ export class MediaManagerComponent implements OnInit {
     console.log(selectedItems);
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
-        path: '/home/pi/jp/SmartPlay/assets/data/tempPlaylist/' + item.name,
+        path: item.path,
+        thumbPath: '/data/tempPlaylist/' + item.name,
         type: 'photo',
         name: item.name
       };
