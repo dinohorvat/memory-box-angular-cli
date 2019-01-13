@@ -11,8 +11,11 @@ export class GlobalService {
   public activeUSB: BehaviorSubject<Usb>;
 
   public activePlayList = [];
-
-  constructor(public http: HttpClient, public auth: AuthService) {}
+  vlcHeaders = new HttpHeaders();
+  constructor(public http: HttpClient, public auth: AuthService) {
+    this.vlcHeaders.append('Accept', 'text/xml');
+    this.vlcHeaders.append('Content-Type', 'text/xml');
+  }
 
   /**
    * @Authentication API Calls
@@ -68,33 +71,33 @@ export class GlobalService {
     return this.http.post(url, data);
   }
 
-  public playMedia() {
-    const url = this.auth.vlc_url + '/playlist';
-    return this.http.post(url, this.activePlayList);
+  public playMedia(duration) {
+    const url = this.auth.media_server + '/play';
+    return this.http.post(url, {duration: duration, mediaFiles: this.activePlayList});
   }
 
   public nextMedia() {
-    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_next';
+    const url = this.auth.media_server + '/next';
     return this.http.get(url);
   }
 
   public prevMedia() {
-    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_previous';
+    const url = this.auth.media_server + '/prev';
     return this.http.get(url);
   }
 
   public play() {
-    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_play';
-    return this.http.get(url);
+    const url = this.auth.media_server + '/requests/status.xml?command=pl_play';
+    return this.http.get(url, {headers: this.vlcHeaders,  responseType: 'text'});
   }
 
   public pauseMedia() {
-    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_pause';
-    return this.http.get(url);
+    const url = this.auth.media_server + '/requests/status.xml?command=pl_pause';
+    return this.http.get(url, {headers: this.vlcHeaders,  responseType: 'text'});
   }
 
   public stopMedia() {
-    const url = this.auth.vlc_url + '/requests/status.xml?command=pl_stop';
+    const url = this.auth.media_server + '/stop';
     return this.http.get(url);
   }
 

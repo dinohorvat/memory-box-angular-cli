@@ -64,7 +64,7 @@ export class PlaylistOrderComponent implements OnInit {
   }
 
   play() {
-    this.globalService.playMedia().subscribe((res_: any) => {
+    this.globalService.playMedia(this.duration).subscribe((res_: any) => {
       this.router.navigate(['/main/playing']);
     });
   }

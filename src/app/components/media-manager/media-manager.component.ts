@@ -83,10 +83,7 @@ export class MediaManagerComponent implements OnInit {
     if (this.canRefresh) {
       this.globalService.createTemporaryPlaylist(selectedItems).subscribe((res) => {
         console.log(res);
-        this.globalService.stopMedia().subscribe((res_) => {
-          console.log(res_);
           this.playTempPlayListItems(selectedItems);
-        });
       });
     } else {
       this.playAlbumItems(Array.from(this.fileService.map.values()));
@@ -103,7 +100,7 @@ export class MediaManagerComponent implements OnInit {
   playAlbumItems(selectedItems) {
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
-        path: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
+        path: item.path,
         type: 'photo'
       };
       if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {
@@ -124,7 +121,7 @@ export class MediaManagerComponent implements OnInit {
     console.log(selectedItems);
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
-        path: '/data/tempPlaylist/' + item.name,
+        path: '/home/pi/jp/SmartPlay/assets/data/tempPlaylist/' + item.name,
         type: 'photo',
         name: item.name
       };
