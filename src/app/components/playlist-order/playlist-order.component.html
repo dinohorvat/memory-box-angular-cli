@@ -8,9 +8,10 @@
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of playlistItems" cdkDrag>
         <img *ngIf="item.type === 'photo'" [src]="serverIp + item.thumbPath"/>
-        <video *ngIf="item.type === 'video'" width="320" height="240">
-          <source [src]="serverIp + item.path">
-        </video>
+        <img *ngIf="item.type === 'video'" [src]="serverIp + item.videoPath"/>
+        <!--<video *ngIf="item.type === 'video'" width="320" height="240">-->
+          <!--<source [src]="serverIp + item.path">-->
+        <!--</video>-->
         <div>{{item.name}}</div>
       </div>
     </div>

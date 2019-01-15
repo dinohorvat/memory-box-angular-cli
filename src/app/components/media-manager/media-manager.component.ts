@@ -102,7 +102,8 @@ export class MediaManagerComponent implements OnInit {
       const _item = {
         path: item.path,
         thumbPath: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
-        type: 'photo'
+        type: 'photo',
+        videoPath: item.videoPath
       };
       if (item.name.endsWith('.avi') || item.name.endsWith('.mov') || item.name.endsWith('.mp4')) {
         _item.type = 'video';
@@ -124,6 +125,7 @@ export class MediaManagerComponent implements OnInit {
       const _item = {
         path: item.path,
         thumbPath: '/data/tempPlaylist/' + item.name,
+        videoPath: item.videoPath,
         type: 'photo',
         name: item.name
       };

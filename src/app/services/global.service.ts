@@ -87,13 +87,13 @@ export class GlobalService {
   }
 
   public play() {
-    const url = this.auth.media_server + '/requests/status.xml?command=pl_play';
-    return this.http.get(url, {headers: this.vlcHeaders,  responseType: 'text'});
+    const url = this.auth.media_server + '/continue';
+    return this.http.get(url);
   }
 
   public pauseMedia() {
-    const url = this.auth.media_server + '/requests/status.xml?command=pl_pause';
-    return this.http.get(url, {headers: this.vlcHeaders,  responseType: 'text'});
+    const url = this.auth.media_server + '/pause';
+    return this.http.get(url);
   }
 
   public stopMedia() {

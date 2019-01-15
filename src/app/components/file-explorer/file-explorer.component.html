@@ -15,9 +15,11 @@
           <!--<mat-icon [ngClass]="{'item-selected': element.selected === true}" color="primary" class="file-or-folder-icon pointer" *ngIf="!element.isFolder && canRefresh">insert_drive_file</mat-icon>-->
           <div *ngIf="canRefresh" [ngClass]="{'item-selected': element.selected === true}">
           <img [src]="mediaUrl + element.path.substring('/media/pi/'.length)" [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;" *ngIf="!element.isFolder && (element.type === 'photo')"/>
-            <video [ngClass]="{'image-selected': element.selected === true}" *ngIf="!element.isFolder && canRefresh && (element.type === 'video')" width="50px" height="auto">
-              <source [src]="mediaUrl + element.path.substring('/media/pi/'.length)">
-            </video>
+            <img [src]="nodeUrl + element.videoPath" [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;" *ngIf="!element.isFolder && (element.type === 'video')"/>
+
+            <!--<video [ngClass]="{'image-selected': element.selected === true}" *ngIf="!element.isFolder && canRefresh && (element.type === 'video')" width="50px" height="auto">-->
+              <!--<source [src]="mediaUrl + element.path.substring('/media/pi/'.length)">-->
+            <!--</video>-->
           </div>
           <!--<img [ngClass]="{'image-selected': element.selected === true}" style="width: 50px;" *ngIf="canRefresh" [src]="thumbnailRootPath + '/data/thumbs/' + element.name"/>-->
           <div *ngIf="!canRefresh" [ngClass]="{'item-selected': element.selected === true}">
