@@ -30,16 +30,25 @@ export class AlbumsComponent implements OnInit {
   }
 
   openAlbum(album) {
+    console.log(album);
     this.fileService.map = new Map<string, FileElement>();
     const _mediaManagerItems = album.children.map( (item: any) => {
       const _item = {
         isFolder: false,
         name: item.name,
         parent: 'root',
+        type: '',
         path: item.path,
         thumbnail: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
         selected: false
       };
+      if (_item.name.endsWith('.avi') || _item.name.endsWith('.mov') || _item.name.endsWith('.mp4')) {
+        _item.type = 'video';
+        const _pngName = _item.name.substr(0, _item.name.lastIndexOf('.')) + '.png';
+        _item.thumbnail = '/data/albums/' + album.name + '/mediaThumbs/' + _pngName;
+      } else {
+        _item.type = 'photo';
+      }
       console.log(_item);
       this.fileService.add(_item);
       return _item;

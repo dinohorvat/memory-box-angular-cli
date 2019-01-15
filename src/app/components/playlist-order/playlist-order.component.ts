@@ -52,6 +52,7 @@ export class PlaylistOrderComponent implements OnInit {
       return false;
     } else {
       const storageAlbum: StorageAlbum = this.storage.getItem(this.albumName);
+      console.log('storageAlbium', storageAlbum)
       this.playlistItems = storageAlbum.playlist;
       this.albumName = storageAlbum.albumName;
       this.duration = storageAlbum.duration;
