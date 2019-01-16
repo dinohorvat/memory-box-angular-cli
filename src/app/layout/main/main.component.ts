@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GlobalService} from '../../services/global.service';
 
 @Component({
@@ -8,7 +8,14 @@ import {GlobalService} from '../../services/global.service';
 })
 
 export class MainComponent implements OnInit {
-  constructor (public globalService: GlobalService) {}
+  blockUi;
+  constructor (public globalService: GlobalService, private ref: ChangeDetectorRef) {
+    this.globalService.blockUi.subscribe((res) => {
+      this.blockUi = res;
+      ref.markForCheck();
+      ref.detectChanges();
+    });
+  }
   ngOnInit(): void {
 
   }

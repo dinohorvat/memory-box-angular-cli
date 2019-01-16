@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {FileElement} from '../components/file-explorer/model/element';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {isNullOrUndefined} from 'util';
 
 @Injectable()
 export class GlobalService {
   public mediaFileTree = new Map<string, FileElement>();
   public activeUSB: BehaviorSubject<Usb>;
-  public blockUi = false;
+  blockUi = new Subject<boolean>();
   public blockUiText = 'Loading';
   public activePlayList = [];
   vlcHeaders = new HttpHeaders();
@@ -83,7 +83,7 @@ export class GlobalService {
   }
 
   public prevMedia() {
-    const url = this.auth.media_server + '/prev';
+    const url = this.auth.media_server + '/previous';
     return this.http.get(url);
   }
 
@@ -163,11 +163,11 @@ export class GlobalService {
 
   public blockUserInterface(text) {
     this.blockUiText = text;
-    this.blockUi = true;
+    this.blockUi.next(true);
   }
 
   public unblockUserInterface() {
-    this.blockUi = false;
+    this.blockUi.next(false);
   }
 }
 
