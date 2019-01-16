@@ -32,7 +32,7 @@ export class AlbumsComponent implements OnInit {
   openAlbum(album) {
     console.log(album);
     this.fileService.map = new Map<string, FileElement>();
-    const _mediaManagerItems = album.children.map( (item: any) => {
+    const _mediaManagerItems = album.children.filter((_item) => _item.name !== 'mediaThumbs').map( (item: any) => {
       const _item = {
         isFolder: false,
         name: item.name,

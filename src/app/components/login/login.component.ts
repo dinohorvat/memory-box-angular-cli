@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   goToPin(mac) {
     const ip = localStorage.getItem(mac);
     const tempIp = '192.168.1.132';
+    // const tempIp = '10.0.0.97';
+
     this.auth.current_pi_ip = ip;
     this.auth.current_mac = mac;
     this.auth.node_url_1 = 'http://' + tempIp + ':3000';
