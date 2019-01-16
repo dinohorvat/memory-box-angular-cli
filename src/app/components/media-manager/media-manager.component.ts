@@ -100,10 +100,11 @@ export class MediaManagerComponent implements OnInit {
   }
 
   playAlbumItems(selectedItems) {
+    console.log(selectedItems);
     const _tempPlayList = selectedItems.map( (item: any) => {
       const _item = {
         path: item.path,
-        thumbPath: item.path.substring('/home/pi/jp/SmartPlay/assets'.length),
+        thumbPath: item.thumbnail,
         type: 'photo',
         videoPath: item.videoPath
       };
