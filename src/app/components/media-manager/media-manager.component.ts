@@ -48,6 +48,7 @@ export class MediaManagerComponent implements OnInit {
   }
 
   getMediaFiles() {
+    this.globalService.blockUserInterface('Loading Media...');
     this.globalService.getMedia().subscribe((res: any) => {
       console.log('media', res);
       this.fileService.map = new Map<string, FileElement>();
@@ -60,6 +61,7 @@ export class MediaManagerComponent implements OnInit {
         this.fileService.add(file);
       }
       this.updateFileElementQuery();
+      this.globalService.unblockUserInterface();
     });
   }
 
@@ -175,8 +177,10 @@ export class MediaManagerComponent implements OnInit {
     if (isNullOrUndefined(albumName)) {
       return;
     }
+    this.globalService.blockUserInterface('Creating Album...');
     this.globalService.createAlbum(albumName, selectedItems).subscribe((res: any) => {
       console.log(res);
+      this.globalService.unblockUserInterface();
       if (this.addAlbum) {
           if (this.storage.getItem(this.mediaManagerName)) {
             const playlistObj: any = this.storage.getItem(this.mediaManagerName);

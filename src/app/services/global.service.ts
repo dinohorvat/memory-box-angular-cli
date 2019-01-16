@@ -9,7 +9,8 @@ import {isNullOrUndefined} from 'util';
 export class GlobalService {
   public mediaFileTree = new Map<string, FileElement>();
   public activeUSB: BehaviorSubject<Usb>;
-
+  public blockUi = false;
+  public blockUiText = 'Loading';
   public activePlayList = [];
   vlcHeaders = new HttpHeaders();
   constructor(public http: HttpClient, public auth: AuthService) {
@@ -158,6 +159,15 @@ export class GlobalService {
   public renameFile(file) {
     const url = this.auth.node_url_1 + '/media/rename';
     return this.http.post(url, file);
+  }
+
+  public blockUserInterface(text) {
+    this.blockUiText = text;
+    this.blockUi = true;
+  }
+
+  public unblockUserInterface() {
+    this.blockUi = false;
   }
 }
 

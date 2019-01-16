@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {GlobalService} from '../../services/global.service';
 
 @Component({
   selector: 'app-main',
@@ -7,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class MainComponent implements OnInit {
+  constructor (public globalService: GlobalService) {}
   ngOnInit(): void {
 
   }

@@ -5,6 +5,13 @@
   <em>This will only take a second. It's totally worth it!</em>
 </div>
 
+<div *ngIf="globalService.blockUi" class="loader">
+  <h1 class="center-text color-black ultrabold uppercase bottom-0 fa-2x">SmartPlay</h1>
+  <div id="preload-spinner"></div>
+  <p>{{globalService.blockUiText}}</p>
+  <em>Please wait...</em>
+</div>
+
 <div id="page-transitions" class="page-build">
   <div class="page-bg gradient-body-1"></div>
   <app-navbar></app-navbar>
