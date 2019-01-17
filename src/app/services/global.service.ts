@@ -21,7 +21,15 @@ export class GlobalService {
   /**
    * @Authentication API Calls
    */
-  public setUpWifi(params) {
+
+  // Python build AutoWifi.py
+  public setUpWifiPython() {
+    const url = this.auth.node_url_1 + '/wifi';
+    return this.http.post(url, {} );
+  }
+
+  // Call to external php script
+  public setUpWifiPhp(params) {
     const url = this.auth.autowifi_url + '?' + params;
     return this.http.post(url, {}, {responseType: 'text'});
   }

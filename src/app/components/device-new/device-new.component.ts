@@ -25,30 +25,33 @@ export class DeviceNewComponent implements OnInit {
   applyWifiSettings() {
     const params = 'serial=' + this.mySerial + '&passwd=' + this.myWifiPass + '&ssid=' + this.mySSID;
     this.wifiStatus = 'Connecting...';
-    this.globalService.setUpWifi(params).subscribe((response: any) => {
-      this.wifiStatus = 'Response ' + response;
-      console.log(response);
-          if (response === 'noip' || response.indexOf('=0.0.0.0=') !== -1) {
-            this.wifiStatus = 'Waiting for wifi connection from memorybox.Try again in a minute.';
-            return;
-          }
+    this.globalService.setUpWifiPython().subscribe((res) => {
+      console.log('Python res', res);
+      this.globalService.setUpWifiPhp(params).subscribe((response: any) => {
+        this.wifiStatus = 'Response ' + response;
+        console.log(response);
+        if (response === 'noip' || response.indexOf('=0.0.0.0=') !== -1) {
+          this.wifiStatus = 'Waiting for wifi connection from memorybox.Try again in a minute.';
+          return;
+        }
 
-          if (this.ValidateIPaddress(response) === true) {
-            this.wifiStatus = 'Applied IP : adding device ' + response;
-            // Add Device
-            this.storage.addDevice(this.mySerial);
-            // Set Device Ip to local storage
-            this.storage.setItem(this.mySerial, response);
-            this.storage.getAllDevices();
+        if (this.ValidateIPaddress(response) === true) {
+          this.wifiStatus = 'Applied IP : adding device ' + response;
+          // Add Device
+          this.storage.addDevice(this.mySerial);
+          // Set Device Ip to local storage
+          this.storage.setItem(this.mySerial, response);
+          this.storage.getAllDevices();
 
-            this.router.navigate(['/main/login']);
-          } else {
-            this.wifiStatus = 'Invalid IP address,please wait for Memory Box to update IP';
-          }
+          this.router.navigate(['/main/login']);
+        } else {
+          this.wifiStatus = 'Invalid IP address,please wait for Memory Box to update IP';
+        }
 
-          if ( response.indexOf('=0.0.0.0=') !== -1) {
-            this.wifiStatus = 'Waiting for device connection, Apply Settings again in a minute.';
-          }
+        if ( response.indexOf('=0.0.0.0=') !== -1) {
+          this.wifiStatus = 'Waiting for device connection, Apply Settings again in a minute.';
+        }
+      });
     });
   }
 
