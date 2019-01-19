@@ -13,7 +13,7 @@ export class AuthService {
 
   current_pi_ip;
   current_mac;
-  node_url_1 = 'http://10.0.0.97:3000';
+  node_url_1;
   media_server;
   vlc_url;
   piweb_url_1;

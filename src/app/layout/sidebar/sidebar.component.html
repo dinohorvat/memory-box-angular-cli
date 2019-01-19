@@ -8,10 +8,10 @@
     </div>
     <div class="menu-list icon-background-active">
       <div *ngFor="let item of navigationItems">
-      <a (click)="onRouteChange()" [routerLink]="[item.path]"  class="menu-item" [href]="item.path">
-        <i [style.background]="item.icon_background_color" class="fa {{item.icon}}"></i>
-        {{item.name}}
-      </a>
+      <div (click)="onRouteChange(); checkRedirect(item, $event)" class="menu-item">
+                  <i [style.background]="item.icon_background_color" class="fa {{item.icon}}"></i>
+          {{item.name}}
+      </div>
     </div>
     </div>
     <em class="menu-copyright">Copyright <span class="copyright-year"></span>, Enabled. All Rights Reserved</em>

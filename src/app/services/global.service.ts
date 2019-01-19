@@ -25,7 +25,7 @@ export class GlobalService {
   // Python build AutoWifi.py
   public setUpWifiPython() {
     const url = this.auth.node_url_1 + '/wifi';
-    return this.http.post(url, {} );
+    return this.http.get(url );
   }
 
   // Call to external php script
