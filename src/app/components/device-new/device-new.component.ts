@@ -15,6 +15,7 @@ export class DeviceNewComponent implements OnInit {
   mySerial = 'b8-27-eb-9c-00-ad';
   myWifiPass = 'A3JVQbE9';
   mySSID = 'MIWIFI_5G_hSAx';
+  deviceIp = '192.168.1.132';
 
   constructor(private globalService: GlobalService, private storage: LocalStoreService,
               private router: Router) {}
@@ -25,7 +26,7 @@ export class DeviceNewComponent implements OnInit {
   applyWifiSettings() {
     const params = 'serial=' + this.mySerial + '&passwd=' + this.myWifiPass + '&ssid=' + this.mySSID;
     this.wifiStatus = 'Connecting...';
-    this.globalService.setUpWifiPython().subscribe((res) => {
+    this.globalService.setUpWifiPython(this.deviceIp).subscribe((res) => {
       console.log('Python res', res);
       this.globalService.setUpWifiPhp(params).subscribe((response: any) => {
         this.wifiStatus = 'Response ' + response;

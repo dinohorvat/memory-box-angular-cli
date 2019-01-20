@@ -23,8 +23,8 @@ export class GlobalService {
    */
 
   // Python build AutoWifi.py
-  public setUpWifiPython() {
-    const url = this.auth.node_url_1 + '/wifi';
+  public setUpWifiPython(ip) {
+    const url = 'http://' + ip + ':3000/wifi';
     return this.http.get(url );
   }
 

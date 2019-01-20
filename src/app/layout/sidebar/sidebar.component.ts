@@ -30,8 +30,9 @@ export class SidebarComponent implements OnInit {
   checkRedirect(item, event) {
     if ((this.router.url === '/main/playing') && (item.name === 'Home' || item.name === 'Exit')) {
       if (confirm('This action will stop your current playlist. Do you wish to proceed?')) {
-        this.globalService.stopMedia();
-        this.router.navigate([item.path]);
+        this.globalService.stopMedia().subscribe((res) => {
+          this.router.navigate([item.path]);
+        });
       } else {
         event.preventDefault();
         event.stopPropagation();
