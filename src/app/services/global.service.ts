@@ -23,10 +23,10 @@ export class GlobalService {
    */
 
   // Python build AutoWifi.py
-  public setUpWifiPython(ip) {
-    const url = 'http://' + ip + ':3000/wifi';
-    return this.http.get(url );
-  }
+  // public setUpWifiPython(ip) {
+  //   const url = 'http://' + ip + ':3000/wifi';
+  //   return this.http.get(url );
+  // }
 
   // Call to external php script
   public setUpWifiPhp(params) {

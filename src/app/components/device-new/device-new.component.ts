@@ -26,8 +26,6 @@ export class DeviceNewComponent implements OnInit {
   applyWifiSettings() {
     const params = 'serial=' + this.mySerial + '&passwd=' + this.myWifiPass + '&ssid=' + this.mySSID;
     this.wifiStatus = 'Connecting...';
-    this.globalService.setUpWifiPython(this.deviceIp).subscribe((res) => {
-      console.log('Python res', res);
       this.globalService.setUpWifiPhp(params).subscribe((response: any) => {
         this.wifiStatus = 'Response ' + response;
         console.log(response);
@@ -53,7 +51,6 @@ export class DeviceNewComponent implements OnInit {
           this.wifiStatus = 'Waiting for device connection, Apply Settings again in a minute.';
         }
       });
-    });
   }
 
   public ValidateIPaddress(ipaddress) {
