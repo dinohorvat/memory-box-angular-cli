@@ -13,6 +13,9 @@ export class GlobalService {
   public blockUiText = 'Loading';
   public activePlayList = [];
   vlcHeaders = new HttpHeaders();
+
+  pilocalIP = new Subject();
+
   constructor(public http: HttpClient, public auth: AuthService) {
     this.vlcHeaders.append('Accept', 'text/xml');
     this.vlcHeaders.append('Content-Type', 'text/xml');
@@ -27,6 +30,15 @@ export class GlobalService {
   //   const url = 'http://' + ip + ':3000/wifi';
   //   return this.http.get(url );
   // }
+
+  set piLocal(value) {
+    this.pilocalIP.next(value); // this will make sure to tell every subscriber about the change.
+    localStorage.setItem('piLocalIp', value);
+  }
+
+  get piLocal() {
+    return localStorage.getItem('piLocalIp');
+  }
 
   // Call to external php script
   public setUpWifiPhp(params) {
