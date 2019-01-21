@@ -147,15 +147,17 @@ export class MediaManagerComponent implements OnInit {
   }
 
   deleteSelected() {
-    const selectedItems = Array.from(this.fileService.map.values()).
-    filter((item: FileElement) => item.selected === true);
-    this.globalService.deleteFiles(selectedItems).subscribe((res: any) => {
-      if (res.success) {
-        for (const element of selectedItems) {
-          this.removeElement(element, true);
+    if (confirm('Are you sure you want to delete selected items?')) {
+      const selectedItems = Array.from(this.fileService.map.values()).
+      filter((item: FileElement) => item.selected === true);
+      this.globalService.deleteFiles(selectedItems).subscribe((res: any) => {
+        if (res.success) {
+          for (const element of selectedItems) {
+            this.removeElement(element, true);
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   createAlbum() {
@@ -214,7 +216,7 @@ export class MediaManagerComponent implements OnInit {
   }
 
   removeElement(element: FileElement, redButton) {
-    // Red Button --> if request is coming from a click in footer
+      // Red Button --> if request is coming from a click in footer
     if (this.canRefresh) {
       if (this.storage.getItem(this.mediaManagerName)) {
         const playlistObj: any = this.storage.getItem(this.mediaManagerName);
@@ -231,13 +233,15 @@ export class MediaManagerComponent implements OnInit {
       this.fileService.delete(element.id);
       this.updateFileElementQuery();
     } else {
-      const selectedFile = [element];
-      this.globalService.deleteFiles(selectedFile).subscribe((res: any) => {
-        if (res.success) {
-          this.fileService.delete(element.id);
-          this.updateFileElementQuery();
-        }
-      });
+      if (confirm('Are you sure you want to delete selected item?')) {
+        const selectedFile = [element];
+        this.globalService.deleteFiles(selectedFile).subscribe((res: any) => {
+          if (res.success) {
+            this.fileService.delete(element.id);
+            this.updateFileElementQuery();
+          }
+        });
+      }
     }
   }
 

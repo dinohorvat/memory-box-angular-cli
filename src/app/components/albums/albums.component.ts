@@ -13,9 +13,11 @@ import {AuthService} from '../../services/auth.service';
 
 export class AlbumsComponent implements OnInit {
   constructor(public globalService: GlobalService, public router: Router,
-              public fileService: FileService) {}
+              public fileService: FileService) {
+  }
 
   albums = [];
+
   ngOnInit() {
     this.getAlbums();
   }
@@ -32,7 +34,7 @@ export class AlbumsComponent implements OnInit {
   openAlbum(album) {
     console.log(album);
     this.fileService.map = new Map<string, FileElement>();
-    const _mediaManagerItems = album.children.filter((_item) => _item.name !== 'mediaThumbs').map( (item: any) => {
+    const _mediaManagerItems = album.children.filter((_item) => _item.name !== 'mediaThumbs').map((item: any) => {
       const _item = {
         isFolder: false,
         name: item.name,
@@ -58,12 +60,14 @@ export class AlbumsComponent implements OnInit {
   }
 
   deleteAlbum(albumName) {
-    this.globalService.deleteAlbum(albumName).subscribe((res: any) => {
-      console.log(res);
-      if (res.success) {
-        alert('Album deleted');
-        this.getAlbums();
-      }
-    });
+    if (confirm('Are you sure you want to delete this album?')) {
+      this.globalService.deleteAlbum(albumName).subscribe((res: any) => {
+        console.log(res);
+        if (res.success) {
+          alert('Album deleted');
+          this.getAlbums();
+        }
+      });
+    }
   }
 }
