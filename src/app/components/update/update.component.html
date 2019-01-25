@@ -1,0 +1,25 @@
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large bg-white-transparent">
+    <div class="top-25 bottom-15">
+      <div class="pricing-3 bg-white-transparent body-import">
+        <div>
+          <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Update Device</h1>
+          <h2 class="pricing-subtitle text-shadow" align="Center">
+            Check for updates
+          </h2>
+        </div>
+        <div class="upload-wrap">
+          <div class="icon-column">
+            <i (click)="downloadMedia()" [ngClass]="
+            {'fa-sync-alt': updateStatus === 'WAITING',
+             'fa-spinner fa-spin': updateStatus === 'ZIPPING',
+             'fa-check-circle': updateStatus === 'DONE'}"
+               class="fa color-white shadow-icon-large fa-5x"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

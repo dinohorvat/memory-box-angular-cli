@@ -28,6 +28,7 @@ import {DeviceSelectComponent} from './login/device-select/device-select.compone
 import {PinPageComponent} from './login/pin-page/pin-page.component';
 import {PlaylistOrderComponent} from './playlist-order/playlist-order.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {UpdateComponent} from './update/update.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MediaManagerComponent,
     PlayingNowComponent,
     PlaylistOrderComponent,
-    PinPageComponent
+    PinPageComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

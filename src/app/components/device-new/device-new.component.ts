@@ -16,7 +16,10 @@ export class DeviceNewComponent implements OnInit {
   myWifiPass = 'A3JVQbE9';
   mySSID = 'MIWIFI_5G_hSAx';
   deviceIp = '192.168.1.132';
-
+  devices = [
+    {ssid: 'MIWIFI_2G_hSAx'},
+    {ssid: 'MIWIFI_5G_hSAx'},
+  ]
   constructor(private globalService: GlobalService, private storage: LocalStoreService,
               private router: Router) {}
   ngOnInit(): void {

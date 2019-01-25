@@ -57,6 +57,11 @@ export class GlobalService {
     return this.http.post(url, data);
   }
 
+  public updateDevice() {
+    const url = this.auth.node_url_1 + '/updateApp';
+    return this.http.get(url);
+  }
+
   /**
    * @Device API Calls
    */

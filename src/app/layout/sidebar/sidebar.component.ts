@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
     {name: 'Export Media', path: '/main/export', icon: 'fa-download', icon_background_color: '#90ABBC'},
     {name: 'Albums Media', path: '/main/albums', icon: 'fa-images', icon_background_color: '#F58000'},
     {name: 'Back-up Media', path: '/main/backup', icon: 'fa-database', icon_background_color: '#FC9CB7'},
+    {name: 'Check Updates', path: '/main/update', icon: 'fa-sync-alt', icon_background_color: '#000000'},
     {name: 'Device Setup', path: '/main/device', icon: 'fa-cog', icon_background_color: '#0273C3'},
     {name: 'Exit', path: '/main/login', icon: 'fa-sign-out-alt', icon_background_color: '#ED3A3E'}
   ];
