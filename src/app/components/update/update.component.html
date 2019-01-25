@@ -12,7 +12,7 @@
           <div class="icon-column">
             <i (click)="downloadMedia()" [ngClass]="
             {'fa-sync-alt': updateStatus === 'WAITING',
-             'fa-spinner fa-spin': updateStatus === 'ZIPPING',
+             'fa-spinner fa-spin': updateStatus === 'UPDATING',
              'fa-check-circle': updateStatus === 'DONE'}"
                class="fa color-white shadow-icon-large fa-5x"></i>
           </div>

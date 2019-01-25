@@ -12,13 +12,10 @@ export class GlobalService {
   blockUi = new Subject<boolean>();
   public blockUiText = 'Loading';
   public activePlayList = [];
-  vlcHeaders = new HttpHeaders();
 
   pilocalIP = new Subject();
 
   constructor(public http: HttpClient, public auth: AuthService) {
-    this.vlcHeaders.append('Accept', 'text/xml');
-    this.vlcHeaders.append('Content-Type', 'text/xml');
   }
 
   /**
@@ -44,6 +41,11 @@ export class GlobalService {
   public setUpWifiPhp(params) {
     const url = this.auth.autowifi_url + '?' + params;
     return this.http.post(url, {}, {responseType: 'text'});
+  }
+
+  public connectWifi(data) {
+    const url = this.auth.node_url_1 + '/connectWifi';
+    return this.http.post(url, data);
   }
 
   public authenticateWithPin(pin) {

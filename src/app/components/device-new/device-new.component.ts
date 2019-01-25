@@ -19,7 +19,7 @@ export class DeviceNewComponent implements OnInit {
   devices = [
     {ssid: 'MIWIFI_2G_hSAx'},
     {ssid: 'MIWIFI_5G_hSAx'},
-  ]
+  ];
   constructor(private globalService: GlobalService, private storage: LocalStoreService,
               private router: Router) {}
   ngOnInit(): void {
@@ -27,33 +27,47 @@ export class DeviceNewComponent implements OnInit {
   }
 
   applyWifiSettings() {
-    const params = 'serial=' + this.mySerial + '&passwd=' + this.myWifiPass + '&ssid=' + this.mySSID;
     this.wifiStatus = 'Connecting...';
-      this.globalService.setUpWifiPhp(params).subscribe((response: any) => {
-        this.wifiStatus = 'Response ' + response;
-        console.log(response);
-        if (response === 'noip' || response.indexOf('=0.0.0.0=') !== -1) {
-          this.wifiStatus = 'Waiting for wifi connection from memorybox.Try again in a minute.';
-          return;
-        }
+      const wifiInfo = {
+        ssid: this.mySSID,
+        password: this.myWifiPass
+      };
+      this.globalService.connectWifi(wifiInfo).subscribe((res_: any) => {
+        this.wifiStatus = 'Applied IP : adding device ' + res_.ip;
+        // Add Device
+        this.storage.addDevice(res_.mac);
+        // Set Device Ip to local storage
+        this.storage.setItem(res_.mac, res_.ip);
+        this.storage.setItem('deviceName', 'SmartPlay Device');
+        this.storage.getAllDevices();
 
-        if (this.ValidateIPaddress(response) === true) {
-          this.wifiStatus = 'Applied IP : adding device ' + response;
-          // Add Device
-          this.storage.addDevice(this.mySerial);
-          // Set Device Ip to local storage
-          this.storage.setItem(this.mySerial, response);
-          this.storage.getAllDevices();
-
-          this.router.navigate(['/main/login']);
-        } else {
-          this.wifiStatus = 'Invalid IP address,please wait for Memory Box to update IP';
-        }
-
-        if ( response.indexOf('=0.0.0.0=') !== -1) {
-          this.wifiStatus = 'Waiting for device connection, Apply Settings again in a minute.';
-        }
+        this.router.navigate(['/main/login']);
       });
+      // this.globalService.setUpWifiPhp(params).subscribe((response: any) => {
+      //   this.wifiStatus = 'Response ' + response;
+      //   console.log(response);
+      //   if (response === 'noip' || response.indexOf('=0.0.0.0=') !== -1) {
+      //     this.wifiStatus = 'Waiting for wifi connection from memorybox.Try again in a minute.';
+      //     return;
+      //   }
+      //
+      //   if (this.ValidateIPaddress(response) === true) {
+      //     this.wifiStatus = 'Applied IP : adding device ' + response;
+      //     // Add Device
+      //     this.storage.addDevice(this.mySerial);
+      //     // Set Device Ip to local storage
+      //     this.storage.setItem(this.mySerial, response);
+      //     this.storage.getAllDevices();
+      //
+      //     this.router.navigate(['/main/login']);
+      //   } else {
+      //     this.wifiStatus = 'Invalid IP address,please wait for Memory Box to update IP';
+      //   }
+      //
+      //   if ( response.indexOf('=0.0.0.0=') !== -1) {
+      //     this.wifiStatus = 'Waiting for device connection, Apply Settings again in a minute.';
+      //   }
+      // });
   }
 
   public ValidateIPaddress(ipaddress) {
