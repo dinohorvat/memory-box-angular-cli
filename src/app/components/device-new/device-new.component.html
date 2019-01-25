@@ -13,12 +13,8 @@
           <li align="center">
             <i align="center">
               <div class="input-simple-2 textarea has-icon">
-                <mat-form-field style="width: 100%">
-                  <mat-select [(ngModel)]="mySSID" placeholder="Select your WiFi network">
-                    <mat-option *ngFor="let device of devices" [value]="device.ssid">
-                      {{device.ssid}}
-                    </mat-option>
-                  </mat-select>
+                <mat-form-field style="width: 100%" class="example-full-width">
+                  <input matInput value="pass" [(ngModel)]="mySSID" type="text" class="textarea-simple-2" placeholder="Wifi Name">
                 </mat-form-field>
               </div>
             </i>

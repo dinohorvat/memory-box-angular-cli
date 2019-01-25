@@ -13,7 +13,7 @@ export class DeviceNewComponent implements OnInit {
 
   wifiStatus: string;
   mySerial = 'b8-27-eb-9c-00-ad';
-  myWifiPass = 'A3JVQbE9';
+  myWifiPass = 'password';
   mySSID = 'MIWIFI_5G_hSAx';
   deviceIp = '192.168.1.132';
   devices = [
