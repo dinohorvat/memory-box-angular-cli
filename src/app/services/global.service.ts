@@ -44,7 +44,7 @@ export class GlobalService {
   }
 
   public connectWifi(data) {
-    const url = this.auth.node_url_1 + '/connectWifi';
+    const url =  'http://192.168.1.132:3000/connectWifi';
     return this.http.post(url, data);
   }
 

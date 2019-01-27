@@ -13,7 +13,7 @@ export class DeviceNewComponent implements OnInit {
 
   wifiStatus: string;
   mySerial = 'b8-27-eb-9c-00-ad';
-  myWifiPass = 'password';
+  myWifiPass = 'A3JVQbE9';
   mySSID = 'MIWIFI_5G_hSAx';
   deviceIp = '192.168.1.132';
   devices = [
@@ -36,10 +36,23 @@ export class DeviceNewComponent implements OnInit {
         this.wifiStatus = 'Applied IP : adding device ' + res_.ip;
         // Add Device
         this.storage.addDevice(res_.mac);
+        const deviceInfo = {
+          ip: res_.ip,
+          mac: res_.mac,
+          deviceName: res_.mac
+        };
+        const devices = [];
+        if (this.storage.getItem('devices')) {
+          this.devices = this.storage.getItem('devices');
+        }
+        if (!devices.find((item) => item.mac === deviceInfo.mac)) {
+          devices.push(deviceInfo);
+        }
+        this.storage.setItem('devices', JSON.stringify(devices));
         // Set Device Ip to local storage
-        this.storage.setItem(res_.mac, res_.ip);
-        this.storage.setItem('deviceName', 'SmartPlay Device');
-        this.storage.getAllDevices();
+        // this.storage.setItem(res_.mac, res_.ip);
+        // this.storage.setItem('deviceName', 'SmartPlay Device');
+        // this.storage.getAllDevices();
 
         this.router.navigate(['/main/login']);
       });

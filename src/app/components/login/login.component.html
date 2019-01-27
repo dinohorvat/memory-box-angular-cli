@@ -9,7 +9,7 @@
         <ul class="pricing-list   bg-white-transparent ">
           <li *ngFor="let device of allDevs">
             <i>
-              <button (click)="goToPin(device)" class="button-full button button-purple">{{device}}</button>
+              <button (click)="goToPin(device)" class="button-full button button-purple">{{device.deviceName}}</button>
             </i>
           </li>
         </ul>
