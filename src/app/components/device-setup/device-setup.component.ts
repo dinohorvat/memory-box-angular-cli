@@ -14,11 +14,11 @@ export class DeviceSetupComponent implements OnInit {
   newPin;
   oldPin;
   deviceName;
-
+  activeDeviceName;
   constructor(private globalService: GlobalService, private storage: LocalStoreService,
               private auth: AuthService) {}
   ngOnInit(): void {
-
+    this.activeDeviceName = this.globalService.activeDeviceName;
   }
 
   savePin() {
@@ -45,11 +45,13 @@ export class DeviceSetupComponent implements OnInit {
   }
 
   saveDeviceName() {
-    this.globalService.setDeviceName(this.deviceName).subscribe((res: any) => {
-      if (res.success) {
-        this.storage.setItem(this.deviceName, this.auth.current_mac);
-        alert('Device Name Changed!');
+    const devices = this.storage.getItem('devices');
+    for (const device of devices) {
+      if (device.deviceName === this.activeDeviceName ) {
+        device.deviceName = this.deviceName;
       }
-    });
+    }
+    this.storage.setItem('devices', JSON.stringify(devices));
+    alert('Device Name Changed!');
   }
 }

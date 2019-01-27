@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 
 export class PinPageComponent implements OnInit {
   pin;
+  wifiStatus;
   constructor(private globalService: GlobalService, private auth: AuthService,
               private router: Router) {}
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class PinPageComponent implements OnInit {
   }
 
   authenticate() {
+    this.wifiStatus = 'Connecting to device...';
     this.globalService.authenticateWithPin(this.pin).subscribe((res: any) => {
       if (res.success) {
         alert('You are connected now.');
@@ -25,6 +27,7 @@ export class PinPageComponent implements OnInit {
         this.router.navigate(['/main/deviceselect']);
       } else {
         alert('PIN Error');
+        this.wifiStatus = 'PIN Error';
         this.auth.authenticated = false;
       }
 

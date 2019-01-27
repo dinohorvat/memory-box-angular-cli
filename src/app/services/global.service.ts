@@ -9,6 +9,7 @@ import {isNullOrUndefined} from 'util';
 export class GlobalService {
   public mediaFileTree = new Map<string, FileElement>();
   public activeUSB: BehaviorSubject<Usb>;
+  public activeDeviceName = '';
   blockUi = new Subject<boolean>();
   public blockUiText = 'Loading';
   public activePlayList = [];
@@ -44,7 +45,7 @@ export class GlobalService {
   }
 
   public connectWifi(data) {
-    const url =  'http://192.168.1.132:3000/connectWifi';
+    const url =  'http://raspberrypi.local:3000/connectWifi';
     return this.http.post(url, data);
   }
 

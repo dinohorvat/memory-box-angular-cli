@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.auth.media_url = 'http://' + ip + ':8000/';
     this.auth.piweb_url_1 = 'http://' + ip;
     this.auth.allowPinPage = true;
+    this.globalService.activeDeviceName = device.deviceName;
     this.router.navigate(['/main/pin']);
   }
 }
