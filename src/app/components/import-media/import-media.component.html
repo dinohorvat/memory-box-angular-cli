@@ -17,7 +17,7 @@
              'fa-spinner fa-spin': uploadStatus === 'UPLOADING',
              'fa-check-circle': uploadStatus === 'DONE'}"
                class="fa color-white shadow-icon-large fa-5x"></i>
-            <input class="input-upload" name="mediaFile" hidden type="file" #uploader
+            <input class="input-upload" name="mediaFile" multiple hidden type="file" #uploader
                    (change)="uploadFile($event)"/>
           </div>
         </div>

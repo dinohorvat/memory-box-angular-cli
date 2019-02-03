@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   goToPin(device) {
-    const ip = device.ip;
+    const ip = 'raspberrypi.local';
     // const tempIp = '10.0.0.97';
 
     this.auth.current_pi_ip = ip;

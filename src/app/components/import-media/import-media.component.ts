@@ -21,13 +21,18 @@ export class ImportMediaComponent implements OnInit {
 
   uploadFile(event) {
     if (this.blockUpload) { return; }
-    const file = event.target.files[0];
     this.uploadStatus = 'UPLOADING';
     this.blockUpload = true;
-    this.globalService.uploadMedia(file).subscribe((res) => {
-      console.log(res);
-      this.uploadStatus = 'DONE';
-    });
+    const filesLength = event.target.files.length;
+    let fileStart = 0;
+    for (const file of event.target.files) {
+      this.globalService.uploadMedia(file).subscribe((res) => {
+        fileStart++;
+        if (fileStart === filesLength) {
+          this.uploadStatus = 'DONE';
+        }
+      });
+    }
   }
 
   uploadAnother() {
