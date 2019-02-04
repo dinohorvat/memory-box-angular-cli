@@ -11,6 +11,7 @@ import {AuthService} from './services/auth.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './services/auth.guard';
 import {PinGuard} from './services/pin.guard';
+import {DiscoveryService} from './services/discovery.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {PinGuard} from './services/pin.guard';
     HttpClientModule,
     ComponentsModule
   ],
-  providers: [FileService, GlobalService, AuthService, AuthGuard, PinGuard],
+  providers: [FileService, GlobalService, AuthService, DiscoveryService, AuthGuard, PinGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

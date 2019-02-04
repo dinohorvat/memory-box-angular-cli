@@ -45,7 +45,7 @@ export class GlobalService {
   }
 
   public connectWifi(data) {
-    const url =  'http://raspberrypi.local:3000/connectWifi';
+    const url =  this.auth.node_url_1 + '/connectWifi';
     return this.http.post(url, data);
   }
 
