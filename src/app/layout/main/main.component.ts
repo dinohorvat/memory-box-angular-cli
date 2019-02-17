@@ -6,6 +6,7 @@ declare var $;
 declare var serviceDiscovery: any;
 declare var hello: any;
 declare var networkinterface: any;
+declare var bluetoothle: any;
 
 @Component({
   selector: 'app-main',
@@ -41,6 +42,17 @@ export class MainComponent implements OnInit {
     cordovaAp.initialize();
   }
   public onDeviceReady() {
+    const initializeResult: Object = {};
+    const params: object = {
+      'request': true,
+      'statusReceiver': false,
+      'restoreKey': 'bluetoothleplugin'
+    };
+    bluetoothle.initialize(() => {
+      console.log('bluetooth Initialized');
+      alert('initialized');
+    }, params);
+
     const success = (message) => {
       alert(message);
       console.log(message);
