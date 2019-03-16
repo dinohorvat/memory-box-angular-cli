@@ -1,0 +1,42 @@
+<div class="page-content header-clear-larger">
+  <div class="content-box shadow-large bg-white-transparent">
+    <div class="top-25 bottom-15">
+      <div class="pricing-3 bg-white-transparent body-import">
+        <div>
+          <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Scan For Devices</h1>
+          <h2 class="pricing-subtitle text-shadow" align="Center">
+            Make sure that Bluetooth is turned on and discoverable on your phone
+            <br>
+            After the scanning is completed please select the Memory Box device you want to connect to
+          </h2>
+        </div>
+        <div class="upload-wrap">
+          <div class="icon-column">
+            <i (click)="scan()" [ngClass]="
+            {'fab fa-play-circle ': scanStatus === 'WAITING',
+             'fa-spinner fa-spin': scanStatus === 'SCANNING',
+             'fa-check-circle': scanStatus === 'DONE'}"
+               class="fa color-white shadow-icon-large fa-5x"></i>
+          </div>
+        </div>
+        <ul align="center" class="pricing-list">
+        <li *ngFor="let device of availableDevices">
+          <div align="center" >
+            <button style="margin: 0px 10px 10px 0px !important;"
+                    class="button-full button button-purple button-device"
+                    (click)="connectDevice(device)">
+              {{device.name}}
+            </button>
+          </div>
+          <div>
+            <small><b>{{device.mac}}</b></small>
+          </div>
+        </li>
+        </ul>
+        <button *ngIf="scanStatus === 'DONE'" (click)="scan();" class="button-full upload-another button button-purple">Scan Again</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
