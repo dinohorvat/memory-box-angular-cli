@@ -40,6 +40,7 @@ export class MainComponent implements OnInit {
     };
 
     cordovaAp.initialize();
+    cordovaAp.initialize();
   }
   public onDeviceReady() {
     const initializeResult: Object = {};
@@ -48,40 +49,79 @@ export class MainComponent implements OnInit {
       'statusReceiver': false,
       'restoreKey': 'bluetoothleplugin'
     };
+
+    const scanParams = {
+      services: [
+        '180D',
+        '180F'
+      ],
+      allowDuplicates: true,
+      scanMode: bluetoothle.SCAN_MODE_LOW_LATENCY,
+      matchMode: bluetoothle.MATCH_MODE_AGGRESSIVE,
+      matchNum: bluetoothle.MATCH_NUM_MAX_ADVERTISEMENT,
+      callbackType: bluetoothle.CALLBACK_TYPE_ALL_MATCHES,
+    };
     bluetoothle.initialize(() => {
       console.log('bluetooth Initialized');
-      alert('initialized');
     }, params);
+    bluetoothle.enable((enableSuccess) => {
+      console.log(enableSuccess);
+    }, (enableError) => {
+      console.log(enableError);
+    });
+    bluetoothle.retrieveConnected((retrieveConnectedSuccess) => {
+      console.log(retrieveConnectedSuccess);
+    }, (retrieveConnectedError) => {
+      console.log(retrieveConnectedError);
+    }, {services: ['180D', '180F']});
 
-    const success = (message) => {
-      alert(message);
-      console.log(message);
-      const n = message.lastIndexOf('/');
-      const result = message.substring(n + 1);
-      this.authService.node_url_1 = 'http://' + result + ':3000';
-      console.log(this.authService.node_url_1);
-    };
+    bluetoothle.startScan((res) => {
+      console.log('Scanning....');
+      console.log(res);
+    }, (err) => {
+      console.log(err);
+    }, scanParams);
 
-    const failure = () => {
-      alert('Error calling Hello Plugin');
-    };
-
-    function onSuccess( ipInformation ) {
-      const ip = ipInformation.ip;
-      alert(ip);
-      hello.greet(ip, success, failure);
-    }
-
-    function onError( error ) {
-
-      // Note: onError() will be called when an IP address can't be found. eg WiFi is disabled, no SIM card, Airplane mode etc.
-      console.log(error);
-    }
-
-    networkinterface.getWiFiIPAddress( onSuccess, onError );
-    networkinterface.getCarrierIPAddress( onSuccess, onError );
+    setTimeout(() => {
+      bluetoothle.stopScan((res) => {
+        console.log('Stopped....');
+        console.log(res);
+      }, (err) => {
+        console.log(err);
+      }, scanParams);
+    }, 30000);
 
   }
+
+    // const success = (message) => {
+    //   alert(message);
+    //   console.log(message);
+    //   const n = message.lastIndexOf('/');
+    //   const result = message.substring(n + 1);
+    //   this.authService.node_url_1 = 'http://' + result + ':3000';
+    //   console.log(this.authService.node_url_1);
+    // };
+    //
+    // const failure = () => {
+    //   alert('Error calling Hello Plugin');
+    // };
+
+    // function onSuccess( ipInformation ) {
+    //   const ip = ipInformation.ip;
+    //   alert(ip);
+    //   hello.greet(ip, success, failure);
+    // }
+
+  //   function onError( error ) {
+  //
+  //     // Note: onError() will be called when an IP address can't be found. eg WiFi is disabled, no SIM card, Airplane mode etc.
+  //     console.log(error);
+  //   }
+  //
+  //   networkinterface.getWiFiIPAddress( onSuccess, onError );
+  //   networkinterface.getCarrierIPAddress( onSuccess, onError );
+  //
+  // }
   // public onDeviceReady() {
   //   const serviceType = 'ssdp:all';
   //

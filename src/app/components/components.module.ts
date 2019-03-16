@@ -29,6 +29,7 @@ import {PinPageComponent} from './login/pin-page/pin-page.component';
 import {PlaylistOrderComponent} from './playlist-order/playlist-order.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {UpdateComponent} from './update/update.component';
+import {ScannerComponent} from './scanner/scanner.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {UpdateComponent} from './update/update.component';
     PlayingNowComponent,
     PlaylistOrderComponent,
     PinPageComponent,
+    ScannerComponent,
     UpdateComponent
   ],
   imports: [

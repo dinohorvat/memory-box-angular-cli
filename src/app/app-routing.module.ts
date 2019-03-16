@@ -16,6 +16,7 @@ import {AuthGuard} from './services/auth.guard';
 import {PinGuard} from './services/pin.guard';
 import {PlaylistOrderComponent} from './components/playlist-order/playlist-order.component';
 import {UpdateComponent} from './components/update/update.component';
+import {ScannerComponent} from './components/scanner/scanner.component';
 
 const routes: Routes = [
     {
@@ -31,6 +32,7 @@ const routes: Routes = [
           {path: 'albums', component: AlbumsComponent, canActivate: [AuthGuard]},
           {path: 'backup', component: BackupMediaComponent, canActivate: [AuthGuard]},
           {path: 'new', component: DeviceNewComponent},
+          {path: 'scan', component: ScannerComponent},
           {path: 'device', component: DeviceSetupComponent, canActivate: [AuthGuard]},
           {path: 'deviceselect', component: DeviceSelectComponent, canActivate: [AuthGuard]},
           {path: 'export', component: ExportMediaComponent, canActivate: [AuthGuard]},
