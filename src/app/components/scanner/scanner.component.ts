@@ -26,6 +26,7 @@ export class ScannerComponent implements OnInit {
       console.log(res);
       const _res = res.filter((item) => !isNullOrUndefined(item.name));
       this.availableDevices = _res.filter((item) => item.name.includes('raspberrypi'));
+      this.availableDevices = this.availableDevices.filter((el, i, a) => i === a.indexOf(el));
       this.scanStatus = 'DONE';
       this.ref.detectChanges();
       this.ref.markForCheck();
@@ -36,5 +37,13 @@ export class ScannerComponent implements OnInit {
 
   connectDevice(device) {
     alert('Finalizing this part tomorrow!');
+  }
+
+  writeData() {
+    bluetoothSerial.write('hello, world', (success) => {
+      console.log('success', success);
+    }, (fail) => {
+      console.log('fail', fail);
+    });
   }
 }
