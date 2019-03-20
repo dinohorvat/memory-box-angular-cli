@@ -34,7 +34,8 @@
         </li>
         </ul>
         <button *ngIf="scanStatus === 'DONE'" (click)="scan();" class="button-full upload-another button button-purple">Scan Again</button>
-        <button (click)="writeData()">Write</button>
+        <button (click)="writeData()">Writes</button>
+        <button (click)="discoverPaired()">Discover</button>
       </div>
     </div>
   </div>

@@ -15,6 +15,7 @@ export class ScannerComponent implements OnInit {
   availableDevices: ScanModel[] = [];
   constructor(private ref: ChangeDetectorRef) {}
   ngOnInit(): void {
+    this.subscribeForData();
   }
 
   scan() {
@@ -35,8 +36,23 @@ export class ScannerComponent implements OnInit {
     });
   }
 
-  connectDevice(device) {
-    alert('Finalizing this part tomorrow!');
+  connectDevice(device: ScanModel) {
+    bluetoothSerial.connectInsecure(device.address, (connectSuccess) => {
+      console.log('success', connectSuccess);
+    }, (connectFailure) => {
+      console.log('fail', connectFailure);
+    });
+
+  }
+
+  discoverPaired() {
+    bluetoothSerial.list((devices) => {
+      devices.forEach((device) => {
+        console.log(device.id);
+      });
+    }, (fail) => {
+      console.log('fail', fail);
+    });
   }
 
   writeData() {
@@ -44,6 +60,17 @@ export class ScannerComponent implements OnInit {
       console.log('success', success);
     }, (fail) => {
       console.log('fail', fail);
+    });
+  }
+
+  subscribeForData() {
+    // the success callback is called whenever data is received
+    bluetoothSerial.subscribeRawData((data) => {
+      console.log(data);
+      const bytes = new Uint8Array(data);
+      console.log(bytes);
+    }, (fail) => {
+      console.log(fail);
     });
   }
 }
