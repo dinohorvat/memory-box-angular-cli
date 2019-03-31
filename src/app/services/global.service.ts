@@ -44,8 +44,9 @@ export class GlobalService {
     return this.http.post(url, {}, {responseType: 'text'});
   }
 
-  public connectWifi(data) {
-    const url =  this.auth.node_url_1 + '/connectWifi';
+  // TODO: Bluetooth
+  public connectWifi(data, ip) {
+    const url =  'http://' + ip + ':3000/connectWifi';
     return this.http.post(url, data);
   }
 

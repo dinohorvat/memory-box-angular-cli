@@ -32,7 +32,7 @@ export class DeviceNewComponent implements OnInit {
         ssid: this.mySSID,
         password: this.myWifiPass
       };
-      this.globalService.connectWifi(wifiInfo).subscribe((res_: any) => {
+      this.globalService.connectWifi(wifiInfo, this.deviceIp).subscribe((res_: any) => {
         this.wifiStatus = 'Applied IP : adding device ' + res_.ip;
         // Add Device
         this.storage.addDevice(res_.mac);

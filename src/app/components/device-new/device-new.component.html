@@ -10,11 +10,22 @@
       <div class="pricing-3 ">
         <ul align="center" class="pricing-list">
 
+          <!--TODO: Bluetooth -->
           <li align="center">
             <i align="center">
               <div class="input-simple-2 textarea has-icon">
                 <mat-form-field style="width: 100%" class="example-full-width">
                   <input matInput value="pass" [(ngModel)]="mySSID" type="text" class="textarea-simple-2" placeholder="Wifi Name">
+                </mat-form-field>
+              </div>
+            </i>
+          </li>
+
+          <li align="center">
+            <i align="center">
+              <div class="input-simple-2 textarea has-icon">
+                <mat-form-field style="width: 100%" class="example-full-width">
+                  <input matInput value="pass" [(ngModel)]="deviceIp" type="text" class="textarea-simple-2" placeholder="Pi IP">
                 </mat-form-field>
               </div>
             </i>
