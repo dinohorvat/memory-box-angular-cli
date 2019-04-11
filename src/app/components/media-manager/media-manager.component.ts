@@ -48,7 +48,7 @@ export class MediaManagerComponent implements OnInit {
   }
 
   getMediaFiles() {
-    this.globalService.blockUserInterface('Loading Media...');
+    this.globalService.blockUserInterface('Please wait while your media files are loading. This could take a few minutes.');
     this.globalService.getMedia().subscribe((res: any) => {
       console.log('media', res);
       this.fileService.map = new Map<string, FileElement>();

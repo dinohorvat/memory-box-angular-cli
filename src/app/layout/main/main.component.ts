@@ -24,11 +24,11 @@ export class MainComponent implements OnInit {
     //   alert('ready')
     //   $('#preloader').addClass('hide-preloader');
     // });
-    // this.globalService.blockUi.subscribe((res) => {
-    //   this.blockUi = res;
-    //   ref.markForCheck();
-    //   ref.detectChanges();
-    // });
+    this.globalService.blockUi.subscribe((res) => {
+      this.blockUi = res;
+      ref.markForCheck();
+      ref.detectChanges();
+    });
   }
   ngOnInit(): void {
 
