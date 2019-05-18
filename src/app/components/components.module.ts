@@ -30,12 +30,14 @@ import {PlaylistOrderComponent} from './playlist-order/playlist-order.component'
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {UpdateComponent} from './update/update.component';
 import {ScannerComponent} from './scanner/scanner.component';
+import {DeviceNewBluetoothComponent} from './device-new-bluetooth/device-new-bluetooth.component';
 
 @NgModule({
   declarations: [
     AlbumsComponent,
     BackupMediaComponent,
     DeviceNewComponent,
+    DeviceNewBluetoothComponent,
     DeviceSelectComponent,
     DeviceSetupComponent,
     ExportMediaComponent,

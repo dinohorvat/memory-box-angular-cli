@@ -17,6 +17,7 @@ import {PinGuard} from './services/pin.guard';
 import {PlaylistOrderComponent} from './components/playlist-order/playlist-order.component';
 import {UpdateComponent} from './components/update/update.component';
 import {ScannerComponent} from './components/scanner/scanner.component';
+import {DeviceNewBluetoothComponent} from './components/device-new-bluetooth/device-new-bluetooth.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,7 @@ const routes: Routes = [
           {path: 'albums', component: AlbumsComponent, canActivate: [AuthGuard]},
           {path: 'backup', component: BackupMediaComponent, canActivate: [AuthGuard]},
           {path: 'new', component: DeviceNewComponent},
+          {path: 'new-bl', component: DeviceNewBluetoothComponent},
           {path: 'scan', component: ScannerComponent},
           {path: 'device', component: DeviceSetupComponent, canActivate: [AuthGuard]},
           {path: 'deviceselect', component: DeviceSelectComponent, canActivate: [AuthGuard]},
