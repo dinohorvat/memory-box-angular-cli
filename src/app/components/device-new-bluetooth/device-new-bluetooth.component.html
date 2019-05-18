@@ -3,7 +3,7 @@
     <div class="pricing-3 ">
       <h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Bluetooth Settings</h1>
       <h2 class="pricing-subtitle text-shadow" align="Center">Please Enter Serial Number, SSID and Password <br>
-        <b>{{wifiStatus}}</b></h2>
+        <b>Status</b></h2>
       <h3 class="pricing-value text-shadow">
 
       </h3>
@@ -13,38 +13,17 @@
           <!--TODO: Bluetooth -->
           <li align="center">
             <i align="center">
-              <div class="input-simple-2 textarea has-icon">
-                <mat-form-field style="width: 100%" class="example-full-width">
-                  <input matInput value="pass" [(ngModel)]="mySSID" type="text" class="textarea-simple-2" placeholder="Wifi Name">
-                </mat-form-field>
-              </div>
+
             </i>
           </li>
 
-          <li align="center">
-            <i align="center">
-              <div class="input-simple-2 textarea has-icon">
-                <mat-form-field style="width: 100%" class="example-full-width">
-                  <input matInput value="pass" [(ngModel)]="deviceIp" type="text" class="textarea-simple-2" placeholder="Pi IP">
-                </mat-form-field>
-              </div>
-            </i>
-          </li>
 
-          <li align="center">
-            <i align="center">
-              <mat-form-field style="width: 100%" class="example-full-width">
-                <input matInput value="pass" [(ngModel)]="myWifiPass" type="text" class="textarea-simple-2" placeholder="Password">
-              </mat-form-field>
-            </i>
-          </li>
+
           <i class="fa "></i>
           <p><!--TODO: {{addWifiResult}} --></p>
           <li>
             <i align="center">
-              <button class="button-full button button-purple" (click)="applyWifiSettings()">Apply
-                Settings
-              </button>
+              <button class="button-full button button-purple">Scan</button>
             </i>
           </li>
         </ul>

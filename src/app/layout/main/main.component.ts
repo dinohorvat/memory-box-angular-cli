@@ -6,7 +6,7 @@ declare var $;
 declare var serviceDiscovery: any;
 declare var hello: any;
 declare var networkinterface: any;
-declare var bluetoothle: any;
+declare var bluetoothSerial: any;
 
 @Component({
   selector: 'app-main',
@@ -38,59 +38,22 @@ export class MainComponent implements OnInit {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
       },
     };
-
-    cordovaAp.initialize();
     cordovaAp.initialize();
   }
   public onDeviceReady() {
-    const initializeResult: Object = {};
-    const params: object = {
-      'request': true,
-      'statusReceiver': false,
-      'restoreKey': 'bluetoothleplugin'
-    };
-
-    const scanParams = {
-      services: [
-        '180D',
-        '180F'
-      ],
-      allowDuplicates: true,
-      scanMode: bluetoothle.SCAN_MODE_LOW_LATENCY,
-      matchMode: bluetoothle.MATCH_MODE_AGGRESSIVE,
-      matchNum: bluetoothle.MATCH_NUM_MAX_ADVERTISEMENT,
-      callbackType: bluetoothle.CALLBACK_TYPE_ALL_MATCHES,
-    };
-    bluetoothle.initialize(() => {
-      console.log('bluetooth Initialized');
-    }, params);
-    bluetoothle.enable((enableSuccess) => {
-      console.log(enableSuccess);
-    }, (enableError) => {
-      console.log(enableError);
-    });
-    bluetoothle.retrieveConnected((retrieveConnectedSuccess) => {
-      console.log(retrieveConnectedSuccess);
-    }, (retrieveConnectedError) => {
-      console.log(retrieveConnectedError);
-    }, {services: ['180D', '180F']});
-
-    bluetoothle.startScan((res) => {
-      console.log('Scanning....');
-      console.log(res);
-    }, (err) => {
-      console.log(err);
-    }, scanParams);
-
-    setTimeout(() => {
-      bluetoothle.stopScan((res) => {
-        console.log('Stopped....');
-        console.log(res);
-      }, (err) => {
-        console.log(err);
-      }, scanParams);
-    }, 30000);
-
+    bluetoothSerial.isEnabled(
+      (success) => {},
+      (error) => {
+        bluetoothSerial.enable(
+          () => {
+            console.log('Bluetooth is enabled');
+          },
+          () => {
+            alert('Please enable the bluetooth before using the application')
+          }
+        );
+      }
+    );
   }
 
     // const success = (message) => {
