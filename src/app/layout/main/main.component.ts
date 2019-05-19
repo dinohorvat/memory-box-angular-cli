@@ -49,7 +49,7 @@ export class MainComponent implements OnInit {
             console.log('Bluetooth is enabled');
           },
           () => {
-            alert('Please enable the bluetooth before using the application')
+            alert('Please enable the bluetooth before using the application');
           }
         );
       }
