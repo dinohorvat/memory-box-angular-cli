@@ -1,44 +1,3 @@
-<!--<div class="page-content header-clear-larger">-->
-  <!--<div class="content-box shadow-large  bg-white-transparent">-->
-    <!--<div class="pricing-3 ">-->
-      <!--<h1 class="pricing-title uppercase ultrabold text-shadow" align="center">Bluetooth Settings</h1>-->
-      <!--<h2 class="pricing-subtitle text-shadow" align="Center">Please make sure your bluetooth is enabled before scanning for devices  <br>-->
-        <!--<b>{{status}}</b></h2>-->
-      <!--<h3 class="pricing-value text-shadow">-->
-
-      <!--</h3>-->
-      <!--<div class="pricing-3 ">-->
-        <!--<ul align="center" class="pricing-list">-->
-          <!--<li *ngFor="let device of devices">-->
-            <!--<div align="center" >-->
-              <!--<button style="margin: 0px 10px 10px 0px !important;"-->
-                      <!--class="button-full button button-purple button-device"-->
-                      <!--&gt;-->
-                <!--{{device.name}}-->
-              <!--</button>-->
-            <!--</div>-->
-            <!--<div>-->
-              <!--<small>Address: <b>{{device.address}}</b></small>-->
-            <!--</div>-->
-          <!--</li>-->
-
-          <!--<i class="fa "></i>-->
-          <!--<p>&lt;!&ndash;TODO: {{addWifiResult}} &ndash;&gt;</p>-->
-          <!--<li>-->
-            <!--<i align="center">-->
-              <!--<button (click)="scanForPaired();" class="button-full button button-purple">Scan Paired</button>-->
-            <!--</i>-->
-          <!--</li>-->
-          <!--<li>-->
-            <!--<i align="center">-->
-              <!--<button (click)="scanForUnpaired();" class="button-full button button-purple">Scan New</button>-->
-            <!--</i>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
 <div class="page-content header-clear-larger">
   <div class="content-box shadow-large bg-white-transparent">
     <div class="top-25 bottom-15">
@@ -48,8 +7,15 @@
           <h2 class="pricing-subtitle text-shadow" align="Center">
             Make sure that you have previously paired Memory Box with your phone from phone's bluetooth settings
             <br>
-            After the scanning is completed please select the Memory Box device you want to connect to
-          </h2>
+            After the scanning is completed please select the Memory Box device you want to connect to. If you want to connect your device
+            to use wireless connection, please configure it below
+            <br>
+            <div class="wifi-text">
+              <i class="fas fa-wifi"></i>
+              <br>
+              <a data-menu="menu-contact2" data-menu-type="menu-box-modal" href="#" ><b>Memory Box Wifi Configuration</b></a>
+            </div>
+        </h2>
         </div>
         <ul align="center" class="pricing-list">
           <li *ngFor="let device of availableDevices">
@@ -70,5 +36,35 @@
     </div>
   </div>
 
+</div>
+
+
+<div id="menu-contact2" data-menu-height="460" class="menu menu-box-modal bg-white shadow-large">
+  <div class="menu-scroll">
+    <h3 class="uppercase ultrabold center-text top-0 color-black font-27">Wifi Settings</h3>
+    <p class="center-text left-30 right-30 bottom-20 color-black top-10 opacity-70">
+    </p>
+    <div class="deco-thin deco-2 bottom-20"></div>
+    <div class="contact-form">
+      <div>
+        <p class="center-text"><i class="fa fa-2x fa-paper-plane-o"></i></p>
+        <h4 class="uppercase ultrabold center-text"></h4>
+        <p class="center-text boxed-text   ">
+          <mat-form-field style="width: 100%" class="example-full-width">
+            <input matInput type="text" class="textarea-simple-2" placeholder="Wifi Name">
+          </mat-form-field>
+        </p>
+
+        <p class="center-text boxed-text ">
+          <mat-form-field style="width: 100%" class="example-full-width">
+            <input matInput type="text" class="textarea-simple-2" placeholder="Wifi Password">
+          </mat-form-field>
+        </p>
+        <a href="#"
+           class="button button-round color-white button-blue button-xs button-center close-menu uppercase bold top-30">Apply </a>
+      </div>
+
+    </div>
+  </div>
 </div>
 
