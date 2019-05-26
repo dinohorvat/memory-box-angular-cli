@@ -11,9 +11,10 @@
             to use wireless connection, please configure it below
             <br>
             <div class="wifi-text">
+              <div><b>{{wifiStatus}}</b></div>
               <i class="fas fa-wifi"></i>
               <br>
-              <a data-menu="menu-contact2" data-menu-type="menu-box-modal" href="#" ><b>Memory Box Wifi Configuration</b></a>
+              <a (click)="openWifiModal();" data-menu="menu-contact2" data-menu-type="menu-box-modal" href="#" ><b>Memory Box Wifi Configuration</b></a>
             </div>
         </h2>
         </div>
@@ -51,13 +52,13 @@
         <h4 class="uppercase ultrabold center-text"></h4>
         <p class="center-text boxed-text   ">
           <mat-form-field style="width: 100%" class="example-full-width">
-            <input matInput type="text" class="textarea-simple-2" placeholder="Wifi Name">
+            <input matInput [(ngModel)]="wifiName" id="wifi-name" type="text" class="textarea-simple-2" placeholder="Wifi Name">
           </mat-form-field>
         </p>
 
         <p class="center-text boxed-text ">
           <mat-form-field style="width: 100%" class="example-full-width">
-            <input matInput type="text" class="textarea-simple-2" placeholder="Wifi Password">
+            <input [(ngModel)]="wifiPassword" matInput type="text" class="textarea-simple-2" placeholder="Wifi Password">
           </mat-form-field>
         </p>
         <a href="#"
